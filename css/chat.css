@@ -1,0 +1,82 @@
+.person {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.person:hover {
+    background-color: #f5f5f5;
+}
+
+.person p {
+    color: gray;
+}
+
+.message-left {
+    display: flex;
+    justify-content: start;
+}
+
+.message-left p {
+    position: relative;
+    background-color: #ecebec;
+    border-radius: 10px;
+    color: black;
+    transform-origin: 0 100%;
+}
+
+.message-left p::before {
+    content: '';
+    position: absolute;
+    left: -19px;
+    bottom: 5px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-right: 10px solid #ecebec;
+    border-bottom: 10px solid #ecebec;
+}
+
+.message-right {
+    display: flex;
+    flex-direction: row-reverse;
+    color: white;
+}
+
+.message-right p {
+    position: relative;
+    background-color: #0099ff;
+    border-radius: 10px;
+    transform-origin: 100% 100%;
+}
+
+.message-right p::before {
+    content: '';
+    position: absolute;
+    right: -19px;
+    bottom: 5px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-left: 10px solid #0099ff;
+    border-bottom: 10px solid #0099ff;
+}
+
+#right-panel i {
+    font-size: 20px;
+    color: #0099ff;
+}
+
+@keyframes pop-in {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.animate {
+    animation: pop-in 0.3s;
+}

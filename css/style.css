@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    transition: 0.2s;
+}
+
+body {
+    overflow: hidden;
+    display: flex;
+}
+
+span {
+    cursor: pointer;
+}
+
+.navbar-link {
+    position: relative;
+}
+
+.navbar-link::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 50%;
+    width: 0;
+    height: 3px;
+    background-color: black;
+    transition: 0.3s;
+}
+
+.navbar-link::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: black;
+    transition: 0.3s;
+}
+
+.navbar-link:hover::before {
+    width: 50%;
+}
+
+.navbar-link:hover::after {
+    width: 50%;
+}
+
+@media (max-width: 768px) {
+    .overflow-breadpoint {
+        overflow: visible !important;
+    }
+}

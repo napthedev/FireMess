@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FireMess</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <style>
+        span {
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .overflow-breadpoint {
+                overflow: visible !important;
+            }
+        }
+
+        .navbar-link {
+            position: relative;
+        }
+
+        .navbar-link::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 50%;
+            width: 0;
+            height: 3px;
+            background-color: black;
+            transition: 0.3s;
+        }
+
+        .navbar-link::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background-color: black;
+            transition: 0.3s;
+        }
+
+        .navbar-link:hover::before{
+            width: 50%;
+        }
+
+        .navbar-link:hover::after{
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="p-3 p-md-5 vh-100 overflow-hidden overflow-breadpoint">
+        <div class="d-flex justify-content-between align-items-center pb-2 pb-md-5">
+            <a href=""><img src="https://i.imgur.com/WZqIKV4.png" alt=""></a>
+            <div class="d-flex align-items-center">
+                <b onclick="to_register();" style="font-size: 18px; cursor: pointer;" class="mx-2 navbar-link">SIGN UP</b>
+                <b onclick="to_signin();" style="font-size: 18px; cursor: pointer;" class="mx-2 navbar-link">LOG IN</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7 d-md-block">
+                <img class="img-fluid" src="../background.png" alt="">
+            </div>
+            <div class="col-md-5">
+                <h1 class="mb-4" style="max-width: 400px;">
+                    The best way to chat with your friends
+                </h1>
+                <p style="max-width: 350px;">
+                    Connect with your friends, family anywhere through our website.
+                </p>
+                <p class="mb-4" style="max-width: 350px;">
+                    Your message will be highly secured.
+                </p>
+                <button onclick="to_register();" class="btn btn-primary btn-lg mb-4">
+                    Get started
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
