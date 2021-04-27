@@ -182,32 +182,58 @@ conponent.signinScreen = `
 `
 
 conponent.welcomeScreen = `
-<div class="p-3 p-md-5 vh-100 overflow-hidden overflow-breadpoint">
-    <div class="d-flex justify-content-between align-items-center pb-2 pb-md-5">
-        <a href=""><img src="https://i.imgur.com/WZqIKV4.png" alt=""></a>
-        <div class="d-flex align-items-center">
-            <b onclick="to_register();" style="font-size: 18px; cursor: pointer;" class="mx-2 navbar-link">SIGN UP</b>
-            <b onclick="to_signin();" style="font-size: 18px; cursor: pointer;" class="mx-2 navbar-link">LOG IN</b>
-        </div>
+<div class="p-3 p-md-5 landing-page" style="overflow-x: hidden;">
+<div class="d-flex justify-content-between align-items-center pb-2 pb-md-5">
+    <a href=""><img src="https://i.imgur.com/WZqIKV4.png" alt=""></a>
+    <div class="d-flex align-items-center">
+        <b onclick="to_register();" style="font-size: 18px; cursor: pointer;" class="mx-2 navbar-link">SIGN
+            UP</b>
+        <b onclick="to_signin();" style="font-size: 18px; cursor: pointer;" class="mx-2 navbar-link">LOG IN</b>
     </div>
-    <div class="row">
-        <div class="col-md-7 d-md-block">
-            <img class="img-fluid" src="./background.png" alt="">
-        </div>
-        <div class="col-md-5">
-            <h1 class="mb-4" style="max-width: 400px;">
-                The best way to chat with your friends
-            </h1>
-            <p style="max-width: 350px;">
-                Connect with your friends, family anywhere through our website.
-            </p>
-            <p class="mb-4" style="max-width: 350px;">
-                Your message will be highly secured.
-            </p>
+</div>
+<div class="row full-height">
+    <div class="col-md-7 d-md-block fade-left">
+        <img width="100%" src="../img/background1.png" alt="">
+    </div>
+    <div class="col-md-5 d-flex flex-column justify-content-around py-5 fade-right" style="height: 300px;">
+        <h1 class="mb-4" style="font-size: 45x;">
+            The best way to chat with your friends
+        </h1>
+        <div class="d-flex d-md-block justify-content-center">
             <button onclick="to_register();" class="btn btn-primary btn-lg mb-4">
                 Get started
             </button>
         </div>
+
     </div>
+</div>
+
+<div class="row full-height">
+    <div class="col-md-6 offset-md-1 fade-left">
+        <div class="py-5">
+            <h1 class="mb-4" style="font-size: 45x;">
+                Connect with your friends anywhere through our website
+            </h1>
+        </div>
+
+    </div>
+    <div class="col-md-5 d-md-block fade-right">
+        <img width="100%" src="../img/background2.png" alt="">
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6 d-md-block fade-left">
+        <img width="100%" src="../img/background3.png" alt="">
+    </div>
+    <div class="col-md-5 offset-md-1 fade-right">
+        <div class="py-5">
+            <h1 class="mb-4" style="font-size: 45x;">
+                Your messages will be completely secured
+            </h1>
+        </div>
+    </div>
+</div>
 </div>
 `
