@@ -193,7 +193,7 @@ conponent.welcomeScreen = `
 </div>
 <div class="row full-height">
     <div class="col-md-7 d-md-block fade-left">
-        <img width="100%" src="../img/background1.png" alt="">
+        <img width="100%" src="https://i.imgur.com/qqQxJQR.png" alt="">
     </div>
     <div class="col-md-5 d-flex flex-column justify-content-around py-5 fade-right" style="height: 300px;">
         <h1 class="mb-4" style="font-size: 45x;">
@@ -218,14 +218,14 @@ conponent.welcomeScreen = `
 
     </div>
     <div class="col-md-5 d-md-block fade-right">
-        <img width="100%" src="../img/background2.png" alt="">
+        <img width="100%" src="https://i.imgur.com/EqqHZiP.png" alt="">
     </div>
 </div>
 
 
 <div class="row">
     <div class="col-md-6 d-md-block fade-left">
-        <img width="100%" src="../img/background3.png" alt="">
+        <img width="100%" src="https://i.imgur.com/zIBXuB3.png" alt="">
     </div>
     <div class="col-md-5 offset-md-1 fade-right">
         <div class="py-5">
