@@ -13,7 +13,7 @@ conponent.chatScreen = `
                 <div class="dropdown">
                     <a class="dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <img src="./image.jpg" width="36px" height="36px" style="border-radius: 50px;" alt="">
+                        <img src="./../img/image.jpg" width="36px" height="36px" style="border-radius: 50px;" alt="">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li><span onclick="model.signout();" class="dropdown-item" href="#"><i class="fa fa-sign-out-alt"></i> Log out</span>
@@ -39,7 +39,7 @@ conponent.chatScreen = `
         style="overflow-x: hidden; overflow-y: auto; flex: 1 1 auto;">
         <div class="p-3 border-bottom d-flex justify-content-between align-items-center person">
             <div class="d-flex">
-                <img src="./image.jpg" alt="" width="56px" height="56px" style="border-radius: 50%;" class="me-md-3">
+                <img src="./../img/image.jpg" alt="" width="56px" height="56px" style="border-radius: 50%;" class="me-md-3">
                 <div class="d-md-flex d-none flex-column justify-content-center" style="min-width: 180px;">
                     <b>Example person</b>
                     <p class="m-0">Hello. How are you?</p>
@@ -56,7 +56,7 @@ conponent.chatScreen = `
     <div class="vh-100 p-0 d-flex flex-column" style="flex: 1 1 auto;" id="right-panel">
     <div style="flex: 0 1 70px;" class="border-bottom d-flex align-items-center justify-content-between px-3">
         <div>
-            <img src="./image.jpg" alt="" width="40px" height="40px" style="border-radius: 50px;">
+            <img src="./../img/image.jpg" alt="" width="40px" height="40px" style="border-radius: 50px;">
             <b class="ms-2">Example person</b>
         </div>
         <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Info">

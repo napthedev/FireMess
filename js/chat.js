@@ -4,10 +4,6 @@ function init_chat() {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     })
 
-    for (let i = 0; i < 3; i++) {
-        document.getElementById("people").innerHTML += document.getElementById("people").innerHTML;
-    }
-
     let form = document.getElementById("my-form");
     form.addEventListener("submit", function (event) {
         event.preventDefault();
@@ -15,7 +11,9 @@ function init_chat() {
         if (msg_content != "") {
             document.getElementById("main-chat").innerHTML += `
             <div class="d-flex px-5 message-right">
-                <p class="p-2 text-break animate">${msg_content}</p>
+                <div class="message-child-container zoom-in">
+                    <p class="p-2 text-break truncation" onclick="this.classList.toggle('truncation')">${msg_content}</p>
+                </div>
             </div>
             `
             form["my-input"].value = "";

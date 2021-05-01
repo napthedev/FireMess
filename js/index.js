@@ -42,8 +42,8 @@ const to_register = function () {
 }
 
 document.addEventListener("animationend", function (event) {
-    if (event.animationName == "pop-in") {
-        event.target.classList.remove("animate");
+    if (event.animationName == "zoom-in") {
+        event.target.classList.remove("zoom-in");
     } else if (event.animationName == "load"){
         event.target.classList.remove("load-animation")
     }

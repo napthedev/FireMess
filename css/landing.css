@@ -1,0 +1,54 @@
+.navbar-link {
+    position: relative;
+}
+
+.navbar-link::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 50%;
+    width: 0;
+    height: 3px;
+    background-color: black;
+    transition: 0.3s;
+}
+
+.navbar-link::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: black;
+    transition: 0.3s;
+}
+
+.navbar-link:hover::before {
+    width: 50%;
+}
+
+.navbar-link:hover::after {
+    width: 50%;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.fade-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: 1s;
+}
+
+.fade-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: 1s;
+}
+
+.fade-focus {
+    opacity: 1;
+    transform: translateX(0);
+}

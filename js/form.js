@@ -1,4 +1,4 @@
-var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+let format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
 function optionalValidation() {
     confirmPassword.setCustomValidity(confirmPassword.value != password.value ? "Passwords do not match." : "");
