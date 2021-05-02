@@ -32,7 +32,7 @@ function switch_screen(screenName) {
 
         case "welcomeScreen":
             document.getElementById("app").innerHTML = conponent.welcomeScreen;
-            landing_scroll();
+            init_landing();
             break;
 
         default:

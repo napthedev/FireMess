@@ -22,7 +22,7 @@
                 <div class="p-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <a class="navbar-brand d-md-block d-none" href="#">
-                            <img src="https://i.imgur.com/WZqIKV4.png" width="auto" height="35px" alt="">
+                            <img src="../img/logo.png" width="auto" height="35px" alt="">
                         </a>
 
                         <div class="dropdown">
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <div id="people" class="d-flex flex-column border-top"
+            <div id="people" class="d-flex flex-column border-top special-scrollbar"
                 style="overflow-x: hidden; overflow-y: auto; flex: 1 1 auto;">
                 <div class="p-3 border-bottom d-flex justify-content-between align-items-center person">
                     <div class="d-flex">
@@ -71,7 +71,7 @@
             </div>
         </div>
         <div class="vh-100 p-0 d-flex flex-column" style="flex: 1 1 auto;" id="right-panel">
-            <div style="flex: 0 1 70px;" class="border-bottom d-flex align-items-center justify-content-between px-3">
+            <div style="flex: 0 1 70px; min-height: 70px;" class="border-bottom d-flex align-items-center justify-content-between px-3">
                 <div>
                     <img src="../../img/image.jpg" alt="" width="40px" height="40px" style="border-radius: 50px;">
                     <b class="ms-2">Example person</b>
@@ -81,32 +81,34 @@
                 </a>
             </div>
 
-            <div id="main-chat" class="overflow-auto pt-3" style="flex: 1 1 auto;">
+            <div id="main-chat" class="overflow-auto pt-3 special-scrollbar" style="flex: 1 1 auto;">
                 <div class="d-flex px-5 message-left m-0">
-                    <div class="message-child-container">
+                    <div class="msg-container">
                         <p class="p-2 text-break">Hello. How are you?</p>
                     </div>
                 </div>
                 <div class="d-flex px-5 message-right m-0">
-                    <div class="message-child-container">
+                    <div class="msg-container">
                         <p class="p-2 text-break">I'm fine. Thank you.</p>
                     </div>
                 </div>
             </div>
 
-            <div style="flex: 0 1 50px;" class="d-flex justify-content-evenly align-items-center px-1">
-                <a style="flex: 0 1 40px;" class="d-flex justify-content-center" href="" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="Send an image">
-                    <i class="fa fa-image"></i>
-                </a>
-                <a style="flex: 0 1 40px;" class="d-flex justify-content-center" href="" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="Send an emoji">
-                    <i class="fa fa-smile"></i>
-                </a>
+            <div style="flex: 0 1 50px; min-height: 50px;" class="d-flex justify-content-evenly align-items-center px-1 input-box">
+                <label style="flex: 0 1 40px; cursor: pointer;" for="browse" class="d-flex justify-content-center">
+                    <input id="browse" class="d-none" type="file" accept="image/x-png,image/gif,image/jpeg" onchange="readImageFile()">
+                    <i class="fa fa-image" data-bs-toggle="tooltip" data-bs-placement="top" title="Send an image"></i>
+                </label>
+                <button id="emoji-container" style="flex: 0 1 40px;" class="d-flex justify-content-center">
+                    <div id="emojis">
+                        
+                    </div>
+                    <i class="fa fa-smile" data-bs-toggle="tooltip" data-bs-placement="top" title="Send an emoji"></i>
+                </button>
                 <form style="flex: 1 1 auto;" class="d-flex" id="my-form">
                     <input style="flex: 1 1 auto;" id="my-input" type="text" class="h-75 form-control"
                         placeholder="Message..." autocomplete="off">
-                    <button style="border: none; outline: none; background-color: transparent; flex: 0 1 50px;"
+                    <button style="flex: 0 1 50px;"
                         data-bs-toggle="tooltip" data-bs-placement="top" title="Send">
                         <a href="">
                             <i class="fa fa-paper-plane"></i>

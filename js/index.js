@@ -14,20 +14,21 @@ const init = function () {
     database = firebase.database();
 
     auth.onAuthStateChanged(function (user) {
-        if (user && user.emailVerified) {
+        if ((user && user.emailVerified) || (user && user.providerData[0].providerId == "facebook.com")) {
             database.ref("users").child(auth.currentUser.uid).get().then(snapshot => {
-                if (!snapshot.exists()){
+                if (!snapshot.exists()) {
                     database.ref("users").child(auth.currentUser.uid).set({
                         displayName: auth.currentUser.displayName,
                         email: auth.currentUser.email,
-                        photoURL: "https://i.imgur.com/VXLM9xv.png",
+                        photoURL: auth.currentUser.photoURL
                     });
                 }
             });
             view.setActiveScreen("chatScreen");
         } else if (user && !user.emailVerified) {
             document.getElementById("openEmailModal").click();
-        } else if (current_view != "signinScreen" && current_view != "registerScreen") {
+        }
+        else if (current_view != "signinScreen" && current_view != "registerScreen") {
             view.setActiveScreen("welcomeScreen");
         }
     });
@@ -44,12 +45,12 @@ const to_register = function () {
 document.addEventListener("animationend", function (event) {
     if (event.animationName == "zoom-in") {
         event.target.classList.remove("zoom-in");
-    } else if (event.animationName == "load"){
+    } else if (event.animationName == "load") {
         event.target.classList.remove("load-animation")
     }
 });
 
-document.getElementById("emailVerificationModal").addEventListener("hidden.bs.modal", function(){
+document.getElementById("emailVerificationModal").addEventListener("hidden.bs.modal", function () {
     auth.signOut();
     to_signin();
 });
