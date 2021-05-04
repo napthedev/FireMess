@@ -2,107 +2,104 @@ const conponent = {};
 
 conponent.chatScreen = `
 <div class="d-flex vw-100">
-<div class="border-end border-bottom vh-100 p-0 d-flex flex-column" style="flex: 0 1 auto;">
-    <div style="flex: 0 1 auto;">
-        <div class="p-3">
-            <div class="d-flex justify-content-between align-items-center">
-                <a class="navbar-brand d-md-block d-none" href="#">
-                    <img src="../img/logo.png" width="auto" height="35px" alt="">
-                </a>
-
-                <div class="dropdown">
-                    <a class="dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <img src="../../img/image.jpg" width="36px" height="36px" style="border-radius: 50px;"
-                            alt="">
+    <div class="border-end border-bottom vh-100 p-0 d-flex flex-column" style="flex: 0 1 auto;">
+        <div style="flex: 0 1 auto;">
+            <div class="p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <a class="navbar-brand d-md-block d-none" href="#">
+                        <img src="../img/logo.png" width="auto" height="35px" alt="">
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><span onclick="model.signout();" class="dropdown-item" href="#"><i class="fa fa-sign-out-alt"></i> Log out</span>
-                        </li>
-                        <li><a class="dropdown-item" href="#"><i class="fa fa-info-circle"></i> Info</a>
-                        </li>
-                    </ul>
+
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="../../img/image.jpg" width="36px" height="36px" style="border-radius: 50px;"
+                                alt="">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><span onclick="model.signout();" class="dropdown-item"><i class="fa fa-sign-out-alt"></i> Log out</span>
+                            </li>
+                            <li><a class="dropdown-item"><i class="fa fa-info-circle"></i> Info</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="p-1 position-relative px-3 d-md-block d-none">
-            <a href="" class="position-absolute" style="top: 10px; left: 25px;">
-                <i style="font-size: 20px;" id="search-icon" class="fa fa-search"></i>
-            </a>
-
-            <input type="text" class="form-control form-control-sm mb-3" style="padding-left: 35px;"
-                placeholder="Search">
-        </div>
-    </div>
-
-    <div id="people" class="d-flex flex-column border-top special-scrollbar"
-        style="overflow-x: hidden; overflow-y: auto; flex: 1 1 auto;">
-        <div class="p-3 border-bottom d-flex justify-content-between align-items-center person">
-            <div class="d-flex">
-                <img src="../../img/image.jpg" alt="" width="56px" height="56px" style="border-radius: 50%;"
-                    class="me-md-3">
-                <div class="d-md-flex d-none flex-column justify-content-center" style="min-width: 180px;">
-                    <b>Example person</b>
-                    <p class="m-0">Hello. How are you?</p>
-                </div>
-
-            </div>
-            <div class="ps-1 align-items-center d-md-flex d-none">
-                <p class="m-0">10:10</p>
-            </div>
-        </div>
-
-    </div>
-</div>
-<div class="vh-100 p-0 d-flex flex-column" style="flex: 1 1 auto;" id="right-panel">
-    <div style="flex: 0 1 70px; min-height: 70px;" class="border-bottom d-flex align-items-center justify-content-between px-3">
-        <div>
-            <img src="../../img/image.jpg" alt="" width="40px" height="40px" style="border-radius: 50px;">
-            <b class="ms-2">Example person</b>
-        </div>
-        <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Info">
-            <i class="fa fa-info-circle"></i>
-        </a>
-    </div>
-
-    <div id="main-chat" class="overflow-auto pt-3 special-scrollbar" style="flex: 1 1 auto;">
-        <div class="d-flex px-5 message-left m-0">
-            <div class="msg-container">
-                <p class="p-2 text-break">Hello. How are you?</p>
-            </div>
-        </div>
-        <div class="d-flex px-5 message-right m-0">
-            <div class="msg-container">
-                <p class="p-2 text-break">I'm fine. Thank you.</p>
-            </div>
-        </div>
-    </div>
-
-    <div style="flex: 0 1 50px; min-height: 50px;" class="d-flex justify-content-evenly align-items-center px-1 input-box">
-        <label style="flex: 0 1 40px; cursor: pointer;" for="browse" class="d-flex justify-content-center">
-            <input id="browse" class="d-none" type="file" accept="image/x-png,image/gif,image/jpeg" onchange="readImageFile()">
-            <i class="fa fa-image" data-bs-toggle="tooltip" data-bs-placement="top" title="Send an image"></i>
-        </label>
-        <button id="emoji-container" style="flex: 0 1 40px;" class="d-flex justify-content-center">
-            <div id="emojis">
-                
-            </div>
-            <i class="fa fa-smile" data-bs-toggle="tooltip" data-bs-placement="top" title="Send an emoji"></i>
-        </button>
-        <form style="flex: 1 1 auto;" class="d-flex" id="my-form">
-            <input style="flex: 1 1 auto;" id="my-input" type="text" class="h-75 form-control"
-                placeholder="Message..." autocomplete="off">
-            <button style="flex: 0 1 50px;"
-                data-bs-toggle="tooltip" data-bs-placement="top" title="Send">
-                <a href="">
-                    <i class="fa fa-paper-plane"></i>
+            <div class="p-1 position-relative px-3 d-md-block d-none">
+                <a href="" class="position-absolute" style="top: 10px; left: 25px;">
+                    <i style="font-size: 20px;" id="search-icon" class="fa fa-search"></i>
                 </a>
 
-            </button>
-        </form>
+                <input type="text" class="form-control form-control-sm mb-3" style="padding-left: 35px;"
+                    placeholder="Search">
+            </div>
+        </div>
+
+        <div id="people" class="d-flex flex-column border-top special-scrollbar"
+            style="overflow-x: hidden; overflow-y: auto; flex: 1 1 auto;">
+            <div class="p-3 border-bottom d-flex justify-content-between align-items-center person">
+                <div class="d-flex">
+                    <img src="../../img/image.jpg" alt="" width="56px" height="56px" style="border-radius: 50%;"
+                        class="me-md-3">
+                    <div class="d-md-flex d-none flex-column justify-content-center" style="min-width: 180px;">
+                        <b>Example person</b>
+                        <p class="m-0">Hello. How are you?</p>
+                    </div>
+
+                </div>
+                <div class="ps-1 align-items-center d-md-flex d-none">
+                    <p class="m-0">10:10</p>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
+    <div class="vh-100 p-0 d-flex flex-column" style="flex: 1 1 auto;" id="right-panel">
+        <div style="flex: 0 1 70px; min-height: 70px;"
+            class="border-bottom d-flex align-items-center justify-content-between px-3">
+            <div>
+                <img src="../../img/image.jpg" alt="" width="40px" height="40px" style="border-radius: 50px;">
+                <b class="ms-2">Example person</b>
+            </div>
+            <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Info">
+                <i class="fa fa-info-circle"></i>
+            </a>
+        </div>
+
+        <div id="main-chat" class="overflow-auto pt-3 special-scrollbar" style="flex: 1 1 auto;">
+            <div class="d-flex px-5 message-left m-0">
+                <div class="msg-container">
+                    <p class="p-2 text-break">Hello. How are you?</p>
+                </div>
+            </div>
+            <div class="d-flex px-5 message-right m-0">
+                <div class="msg-container">
+                    <p class="p-2 text-break">I'm fine. Thank you.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="flex: 0 1 50px; min-height: 50px;"
+            class="d-flex justify-content-evenly align-items-center px-1">
+            <label style="flex: 0 1 40px; cursor: pointer;" for="image-browse"
+                class="d-flex justify-content-center">
+                <input id="image-browse" class="d-none" type="file" accept="image/png,image/jpeg"
+                    onchange="readImageFile(this, ['image/x-png', 'image/jpeg'])">
+                <i class="fa fa-image" data-bs-toggle="tooltip" data-bs-placement="top" title="Send an image"></i>
+            </label>
+            <label style="flex: 0 1 40px; cursor: pointer;" for="gif-browse" class="d-flex justify-content-center">
+                <input id="gif-browse" class="d-none" type="file" accept="image/gif"
+                    onchange="readImageFile(this, ['image/gif'])">
+                <img src="../img/gif-icon.png" width="20px" alt="" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Send a gif">
+            </label>
+            <input style="flex: 1 1 auto;" id="my-input" type="text" placeholder="Message..." autocomplete="off">
+            <span onclick="get_message();" class="d-flex justify-content-center" style="flex: 0 1 50px;" data-bs-toggle="tooltip" data-bs-placement="top" title="Send">
+                <i class="fa fa-paper-plane"></i>
+            </span>
+        </div>
+    </div>
 </div>
 `
 

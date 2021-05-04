@@ -66,12 +66,6 @@
     color: #0099ff;
 }
 
-.input-box button{
-    position: relative;
-    background-color: transparent;
-    border: none;
-    outline: none;
-}
 
 #emoji-container:focus #emojis{
     display: flex;

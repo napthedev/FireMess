@@ -4,62 +4,44 @@ function init_chat() {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     })
 
-    readEmojiFile("../result.txt");
+    $(document).ready(function () {
+        $("#my-input").emojioneArea({
+            pickerPosition: "bottom"
+        })
+    })
 
-    let form = document.getElementById("my-form");
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        let msg_content = form["my-input"].value.trim();
-        if (msg_content != "") {
-            document.getElementById("main-chat").innerHTML += `
+    let my_input = $("#my-input").emojioneArea();
+    my_input[0].emojioneArea.on("keydown", function (btn, event) {
+        if (event.keyCode == 13) {
+            get_message();
+        }
+    });
+}
+
+function get_message() {
+    let my_input = $("#my-input").emojioneArea();
+    let msg_content = my_input[0].emojioneArea.getText().trim();
+    if (msg_content != "") {
+        document.getElementById("main-chat").innerHTML += `
             <div class="d-flex px-5 message-right m-0">
                 <div class="msg-container zoom-in">
                     <p class="p-2 text-break message-content truncation" onclick="this.classList.toggle('truncation');">${msg_content}</p>
                 </div>
             </div>
             `
-            form["my-input"].value = "";
-            scroll_bottom();
-        }
-    })
-}
-
-function send_emoji(el) {
-    document.getElementById("main-chat").innerHTML += `
-    <div class="d-flex px-5 message-right m-0">
-        <div class="msg-container zoom-in">
-            <p class="p-2 message-content fs-1">${el.innerText}</p>
-        </div>
-    </div>
-    `
-    scroll_bottom();
-}
-
-function readEmojiFile(file) {
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function () {
-        if (rawFile.readyState === 4) {
-            if (rawFile.status === 200 || rawFile.status == 0) {
-                var allText = rawFile.responseText;
-                document.getElementById("emojis").innerHTML = allText;
-            }
+        scroll_bottom();
+        my_input[0].emojioneArea.setText("");
+        if (!document.getElementsByClassName("emojionearea-picker")[0].classList.contains("hidden")) {
+            document.getElementsByClassName("emojionearea-button-close")[0].click();
         }
     }
-    rawFile.send(null);
 }
 
-function scroll_bottom() {
-    let main_chat = document.getElementById("main-chat");
-    main_chat.scrollTop = main_chat.scrollHeight - main_chat.clientHeight;
-}
-
-function readImageFile() {
-    let file = document.getElementById("browse").files[0];
+function readImageFile(el, type) {
+    let file = el.files[0];
     let reader = new FileReader();
     reader.addEventListener("load", function () {
-        let validImageTypes = ["image/x-png", "image/gif", "image/jpeg"];
-        if (validImageTypes.includes(file["type"])) {
+        if (type.includes(file["type"])) {
             let img_el = document.createElement("img");
             img_el.src = reader.result;
             let img_container = `
@@ -70,10 +52,16 @@ function readImageFile() {
             </div>
             `
             document.getElementById("main-chat").innerHTML += img_container;
+            scroll_bottom();
         }
     }, false);
 
     if (file) {
         reader.readAsDataURL(file);
     }
+}
+
+function scroll_bottom() {
+    let main_chat = document.getElementById("main-chat");
+    main_chat.scrollTop = main_chat.scrollHeight - main_chat.clientHeight;
 }
