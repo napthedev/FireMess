@@ -1,69 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Log in</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        <link rel="stylesheet" href="../css/style.css" />
+        <link rel="stylesheet" href="../css/account.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log in</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/account.css">
-</head>
+    <body>
+        <div class="vh-100 vw-100 form-background"></div>
+        <div class="d-flex justify-content-center">
+            <div class="form-container">
+                <div class="d-flex justify-content-center">
+                    <img src="../img/logo.png" height="50px" width="auto" alt="" />
+                </div>
 
-<body>
-    <div class="vh-100 vw-100 form-background"></div>
-    <div class="d-flex justify-content-center">
-        <div class="form-container">
-            <div class="d-flex justify-content-center">
-                <img src="../img/logo.png" height="50px" width="auto" alt="">
-            </div>
+                <div>
+                    <button class="login-btn"><img src="https://phukienbaominh.com/wp-content/uploads/2018/11/google-icon.jpg" width="30px" alt="" /> Log in with Google</button>
+                </div>
+                <div>
+                    <button class="login-btn"><img src="https://cdn.icon-icons.com/icons2/2108/PNG/512/facebook_icon_130940.png" width="30px" style="border-radius: 50px" alt="" /> Log in with Facebook</button>
+                </div>
 
-            <div>
-                <button class="login-btn"><img
-                        src="https://phukienbaominh.com/wp-content/uploads/2018/11/google-icon.jpg" width="30px" alt="">
-                    Log in with Google</button>
-            </div>
-            <div>
-                <button class="login-btn">
-                    <img src="https://cdn.icon-icons.com/icons2/2108/PNG/512/facebook_icon_130940.png"
-                        width="30px" style="border-radius: 50px;" alt=""> Log in with Facebook</button>
-            </div>
-
-            <hr>
-            <form id="signin-form" class="row g-3 needs-validation" novalidate>
-                <div class="col-md-12">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" required>
-                    <div class="invalid-feedback">
-                        Please provide a valid email.
+                <hr />
+                <form id="signin-form" class="row g-3 needs-validation" novalidate>
+                    <div class="col-md-12">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" required />
+                        <div class="invalid-feedback">Please provide a valid email.</div>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" required>
-                    <div class="invalid-feedback">
-                        Please input your password
+                    <div class="col-md-12">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" required />
+                        <div class="invalid-feedback">Please input your password</div>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <span onclick="to_register();" class="link-primary">Haven't got any account? Sign up</span>
-                </div>
-                <div class="d-grid gap-2 col-md-12">
-                    <button class="btn btn-primary" type="submit">Log in</button>
-                </div>
-            </form>
-
-
+                    <div class="col-md-12">
+                        <span onclick="to_register();" class="link-primary">Haven't got any account? Sign up</span>
+                    </div>
+                    <div class="d-grid gap-2 col-md-12">
+                        <button class="btn btn-primary" type="submit">Log in</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-        crossorigin="anonymous"></script>
-    <script src="../js/register.js"></script>
-</body>
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+        <script src="../js/register.js"></script>
+    </body>
 </html>

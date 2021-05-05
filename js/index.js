@@ -7,7 +7,7 @@ const init = function () {
         projectId: "firemess-2ccd2",
         storageBucket: "firemess-2ccd2.appspot.com",
         messagingSenderId: "198328051551",
-        appId: "1:198328051551:web:d39551bf699163a115b8ea"
+        appId: "1:198328051551:web:d39551bf699163a115b8ea",
     };
     firebase.initializeApp(firebaseConfig);
     auth = firebase.auth();
@@ -15,20 +15,23 @@ const init = function () {
 
     auth.onAuthStateChanged(function (user) {
         if ((user && user.emailVerified) || (user && user.providerData[0].providerId == "facebook.com")) {
-            database.ref("users").child(auth.currentUser.uid).get().then(snapshot => {
-                if (!snapshot.exists()) {
-                    database.ref("users").child(auth.currentUser.uid).set({
-                        displayName: auth.currentUser.displayName,
-                        email: auth.currentUser.email,
-                        photoURL: auth.currentUser.photoURL
-                    });
-                }
-            });
+            database
+                .ref("users")
+                .child(auth.currentUser.uid)
+                .get()
+                .then((snapshot) => {
+                    if (!snapshot.exists()) {
+                        database.ref("users").child(auth.currentUser.uid).set({
+                            displayName: auth.currentUser.displayName,
+                            email: auth.currentUser.email,
+                            photoURL: auth.currentUser.photoURL,
+                        });
+                    }
+                });
             view.setActiveScreen("chatScreen");
         } else if (user && !user.emailVerified) {
             document.getElementById("openEmailModal").click();
-        }
-        else if (current_view != "signinScreen" && current_view != "registerScreen") {
+        } else if (current_view != "signinScreen" && current_view != "registerScreen") {
             view.setActiveScreen("welcomeScreen");
         }
     });
@@ -36,17 +39,17 @@ const init = function () {
 
 const to_signin = function () {
     view.setActiveScreen("signinScreen");
-}
+};
 
 const to_register = function () {
     view.setActiveScreen("registerScreen");
-}
+};
 
 document.addEventListener("animationend", function (event) {
     if (event.animationName == "zoom-in") {
         event.target.classList.remove("zoom-in");
     } else if (event.animationName == "load") {
-        event.target.classList.remove("load-animation")
+        event.target.classList.remove("load-animation");
     }
 });
 

@@ -10,7 +10,7 @@ view.setActiveScreen = function (screenName) {
             switch_screen(screenName);
         }, 1000);
     }
-}
+};
 
 function switch_screen(screenName) {
     current_view = screenName;

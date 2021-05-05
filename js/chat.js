@@ -1,14 +1,14 @@
 function init_chat() {
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
 
     $(document).ready(function () {
         $("#my-input").emojioneArea({
-            pickerPosition: "bottom"
-        })
-    })
+            pickerPosition: "bottom",
+        });
+    });
 
     let my_input = $("#my-input").emojioneArea();
     my_input[0].emojioneArea.on("keydown", function (btn, event) {
@@ -28,7 +28,7 @@ function get_message() {
                     <p class="p-2 text-break message-content truncation" onclick="this.classList.toggle('truncation');">${msg_content}</p>
                 </div>
             </div>
-            `
+            `;
         scroll_bottom();
         my_input[0].emojioneArea.setText("");
         if (!document.getElementsByClassName("emojionearea-picker")[0].classList.contains("hidden")) {
@@ -40,21 +40,25 @@ function get_message() {
 function readImageFile(el, type) {
     let file = el.files[0];
     let reader = new FileReader();
-    reader.addEventListener("load", function () {
-        if (type.includes(file["type"])) {
-            let img_el = document.createElement("img");
-            img_el.src = reader.result;
-            let img_container = `
+    reader.addEventListener(
+        "load",
+        function () {
+            if (type.includes(file["type"])) {
+                let img_el = document.createElement("img");
+                img_el.src = reader.result;
+                let img_container = `
             <div class="d-flex px-5 message-right mb-2">
                 <div style="margin-left: auto; margin-right: 0; transform-origin: 100% 100%;" class="zoom-in">
                     ${img_el.outerHTML}
                 </div>
             </div>
-            `
-            document.getElementById("main-chat").innerHTML += img_container;
-            scroll_bottom();
-        }
-    }, false);
+            `;
+                document.getElementById("main-chat").innerHTML += img_container;
+                scroll_bottom();
+            }
+        },
+        false
+    );
 
     if (file) {
         reader.readAsDataURL(file);
