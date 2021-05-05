@@ -29,7 +29,7 @@ hr {
 
 hr:after {
     background-color: white;
-    content: 'or';
+    content: "or";
     padding: 0 4px;
     position: relative;
     top: -15px;

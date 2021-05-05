@@ -17,13 +17,13 @@
     color: black;
 }
 
-.message-left .msg-container{
+.message-left .msg-container {
     position: relative;
     transform-origin: 0 100%;
 }
 
 .message-left .msg-container::before {
-    content: '';
+    content: "";
     position: absolute;
     left: -18px;
     bottom: 20px;
@@ -41,7 +41,7 @@
     border-radius: 10px;
 }
 
-.message-right .msg-container{
+.message-right .msg-container {
     margin-left: auto;
     margin-right: 0;
     transform-origin: 100% 100%;
@@ -49,7 +49,7 @@
 }
 
 .message-right .msg-container::before {
-    content: '';
+    content: "";
     position: absolute;
     right: -18px;
     bottom: 20px;
@@ -66,12 +66,11 @@
     color: #0099ff;
 }
 
-
-#emoji-container:focus #emojis{
+#emoji-container:focus #emojis {
     display: flex;
 }
 
-#emojis{
+#emojis {
     position: absolute;
     bottom: 30px;
     display: none;
@@ -87,14 +86,14 @@
     transform-origin: 50% 100%;
 }
 
-#emojis p{
+#emojis p {
     font-size: 30px;
 }
 
-.emoji{
+.emoji {
     transition: 0.3s;
 }
 
-.emoji:hover{
+.emoji:hover {
     background-color: lightgray;
 }

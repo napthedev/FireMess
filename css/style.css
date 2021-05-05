@@ -10,7 +10,7 @@ a {
     transition: 0.2s;
 }
 
-span{
+span {
     cursor: pointer;
 }
 
@@ -48,12 +48,12 @@ span{
     }
 }
 
-.load-animation{
+.load-animation {
     animation: load 1s;
 }
 
 @media (max-width: 768px) {
-    .landing-page h1{
+    .landing-page h1 {
         text-align: center;
     }
     .full-height {

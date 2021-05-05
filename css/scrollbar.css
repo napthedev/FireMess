@@ -14,18 +14,18 @@
     background: #a9adb0;
 }
 
-.special-scrollbar::-webkit-scrollbar-track{
+.special-scrollbar::-webkit-scrollbar-track {
     background: transparent;
 }
 
-.special-scrollbar::-webkit-scrollbar-thumb{
+.special-scrollbar::-webkit-scrollbar-thumb {
     background: transparent;
 }
 
-.special-scrollbar:hover::-webkit-scrollbar-track{
+.special-scrollbar:hover::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
 
-.special-scrollbar:hover::-webkit-scrollbar-thumb{
+.special-scrollbar:hover::-webkit-scrollbar-thumb {
     background: #bcc0c4;
 }
