@@ -1,99 +1,99 @@
 .person {
-    cursor: pointer;
-    transition: 0.3s;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .person:hover {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 .person p {
-    color: gray;
+  color: gray;
 }
 
 .message-left p {
-    background-color: #ecebec;
-    border-radius: 10px;
-    color: black;
+  background-color: #ecebec;
+  border-radius: 10px;
+  color: black;
 }
 
 .message-left .msg-container {
-    position: relative;
-    transform-origin: 0 100%;
+  position: relative;
+  transform-origin: 0 100%;
 }
 
 .message-left .msg-container::before {
-    content: "";
-    position: absolute;
-    left: -18px;
-    bottom: 20px;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-left: 10px solid transparent;
-    border-right: 10px solid #ecebec;
-    border-bottom: 10px solid #ecebec;
+  content: "";
+  position: absolute;
+  left: -18px;
+  bottom: 20px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid #ecebec;
+  border-bottom: 10px solid #ecebec;
 }
 
 .message-right p {
-    color: white;
-    background-color: #0099ff;
-    border-radius: 10px;
+  color: white;
+  background-color: #0099ff;
+  border-radius: 10px;
 }
 
 .message-right .msg-container {
-    margin-left: auto;
-    margin-right: 0;
-    transform-origin: 100% 100%;
-    position: relative;
+  margin-left: auto;
+  margin-right: 0;
+  transform-origin: 100% 100%;
+  position: relative;
 }
 
 .message-right .msg-container::before {
-    content: "";
-    position: absolute;
-    right: -18px;
-    bottom: 20px;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-left: 10px solid #0099ff;
-    border-bottom: 10px solid #0099ff;
+  content: "";
+  position: absolute;
+  right: -18px;
+  bottom: 20px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-left: 10px solid #0099ff;
+  border-bottom: 10px solid #0099ff;
 }
 
 #right-panel i {
-    font-size: 20px;
-    color: #0099ff;
+  font-size: 20px;
+  color: #0099ff;
 }
 
 #emoji-container:focus #emojis {
-    display: flex;
+  display: flex;
 }
 
 #emojis {
-    position: absolute;
-    bottom: 30px;
-    display: none;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    width: 320px;
-    height: 320px;
-    box-shadow: 0 0 10px lightgray;
-    border-radius: 5px;
-    background-color: white;
-    padding: 10px;
-    overflow-y: auto;
-    transform-origin: 50% 100%;
+  position: absolute;
+  bottom: 30px;
+  display: none;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 320px;
+  height: 320px;
+  box-shadow: 0 0 10px lightgray;
+  border-radius: 5px;
+  background-color: white;
+  padding: 10px;
+  overflow-y: auto;
+  transform-origin: 50% 100%;
 }
 
 #emojis p {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .emoji {
-    transition: 0.3s;
+  transition: 0.3s;
 }
 
 .emoji:hover {
-    background-color: lightgray;
+  background-color: lightgray;
 }
