@@ -1,8 +1,8 @@
 const view = {};
-let current_view = "";
+view.current = "";
 
 view.setActiveScreen = function (screenName) {
-  if (current_view == "") {
+  if (view.current == "") {
     switch_screen(screenName);
   } else {
     document.getElementById("loading").classList.add("load-animation");
@@ -13,7 +13,7 @@ view.setActiveScreen = function (screenName) {
 };
 
 function switch_screen(screenName) {
-  current_view = screenName;
+  view.current = screenName;
   switch (screenName) {
     case "chatScreen":
       document.getElementById("app").innerHTML = conponent.chatScreen;

@@ -1,3 +1,9 @@
+let chatUser = undefined;
+let newItems = {};
+let main_chat;
+let loading_message_count = 10;
+let loading = false;
+
 function init_chat() {
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -16,24 +22,61 @@ function init_chat() {
       get_message();
     }
   });
+
+  main_chat = document.getElementById("main-chat");
+
+  let profile_picture_el = document.getElementsByClassName("profile-picture");
+  for (let i = 0; i < profile_picture_el.length; i++) {
+    profile_picture_el[i].src = auth.currentUser.photoURL;
+  }
+  document.getElementById("profile-email").innerText = auth.currentUser.email;
+  document.getElementById("profile-id").innerText = auth.currentUser.uid;
+
+  database.ref("users").on("child_added", (snapshot) => {
+    let user = snapshot.val();
+    if (snapshot.key != auth.currentUser.uid) {
+      if (chatUser == undefined) {
+        set_chat_user(snapshot.key);
+      }
+
+      document.getElementById("people").innerHTML += sample.person(snapshot.key, user["photoURL"], user["displayName"]);
+
+      database
+        .ref("messages")
+        .child(arrange_user_id(auth.currentUser.uid, snapshot.key))
+        .limitToLast(1)
+        .on("child_added", (data) => {
+          document.querySelector(`#${snapshot.key} .recent-content`).innerText = data.val().type == "image" ? "Image" : data.val().content;
+          if (!newItems[arrange_user_id(auth.currentUser.uid, snapshot.key)]) return;
+          render_message(data.val().sender, snapshot.key, data.val().content, data.val().type);
+          scroll_bottom();
+        });
+
+      database
+        .ref("messages")
+        .child(arrange_user_id(auth.currentUser.uid, snapshot.key))
+        .once("value", () => {
+          newItems[arrange_user_id(auth.currentUser.uid, snapshot.key)] = true;
+        });
+    }
+  });
+
+  main_chat.addEventListener("scroll", () => {
+    if (main_chat.scrollTop == 0 && main_chat.scrollHeight > main_chat.clientHeight && !loading) {
+      load_previous_messages();
+    }
+  });
 }
 
 function get_message() {
   let my_input = $("#my-input").emojioneArea();
   let msg_content = my_input[0].emojioneArea.getText().trim();
   if (msg_content != "") {
-    document.getElementById("main-chat").innerHTML += `
-            <div class="d-flex px-5 message-right m-0">
-                <div class="msg-container zoom-in">
-                    <p class="p-2 text-break message-content truncation" onclick="this.classList.toggle('truncation');">${msg_content}</p>
-                </div>
-            </div>
-            `;
-    scroll_bottom();
     my_input[0].emojioneArea.setText("");
     if (!document.getElementsByClassName("emojionearea-picker")[0].classList.contains("hidden")) {
       document.getElementsByClassName("emojionearea-button-close")[0].click();
     }
+    send_message(msg_content);
   }
 }
 
@@ -43,18 +86,14 @@ function readImageFile(el, type) {
   reader.addEventListener(
     "load",
     function () {
-      if (type.includes(file["type"])) {
-        let img_el = document.createElement("img");
-        img_el.src = reader.result;
-        let img_container = `
-            <div class="d-flex px-5 message-right mb-2">
-                <div style="margin-left: auto; margin-right: 0; transform-origin: 100% 100%;" class="zoom-in">
-                    ${img_el.outerHTML}
-                </div>
-            </div>
-            `;
-        document.getElementById("main-chat").innerHTML += img_container;
-        scroll_bottom();
+      if (file.size > 3145728) {
+        alert("File is too big!!!");
+      } else if (type.includes(file["type"])) {
+        database.ref("messages").child(arrange_user_id(auth.currentUser.uid, chatUser.id)).push({
+          sender: auth.currentUser.uid,
+          content: reader.result,
+          type: "image",
+        });
       }
     },
     false
@@ -65,7 +104,99 @@ function readImageFile(el, type) {
   }
 }
 
+function send_message(message) {
+  database.ref("messages").child(arrange_user_id(auth.currentUser.uid, chatUser.id)).push({
+    sender: auth.currentUser.uid,
+    content: message,
+    type: "text",
+  });
+}
+
 function scroll_bottom() {
-  let main_chat = document.getElementById("main-chat");
-  main_chat.scrollTop = main_chat.scrollHeight - main_chat.clientHeight;
+  setTimeout(() => {
+    main_chat.scrollTop = main_chat.scrollHeight - main_chat.clientHeight;
+  }, 300);
+}
+
+function arrange_user_id(id1, id2) {
+  return id1 <= id2 ? id1 + "-" + id2 : id2 + "-" + id1;
+}
+
+function set_chat_user(id) {
+  if (chatUser?.id == id) return;
+
+  main_chat.innerHTML = sample.loadingSpin();
+  database
+    .ref("users")
+    .child(id)
+    .get()
+    .then((snapshot) => {
+      chatUser = { ...snapshot.val(), id: id };
+      document.getElementById("chat-user-info").innerHTML = sample.chatUser(chatUser.photoURL, chatUser.displayName);
+      document.getElementsByClassName("person-focus")[0]?.classList.remove("person-focus");
+      document.getElementById(id).classList.add("person-focus");
+
+      document.getElementById("chat-picture").src = chatUser.photoURL;
+      document.getElementById("chat-email").innerText = chatUser.email;
+      document.getElementById("chat-id").innerText = chatUser.id;
+
+      database
+        .ref("messages")
+        .child(arrange_user_id(auth.currentUser.uid, id))
+        .limitToLast(loading_message_count)
+        .get()
+        .then((child_snapshot) => {
+          if (!child_snapshot.exists() && chatUser.id == id) {
+            main_chat.innerHTML = sample.noMessageWarning();
+          } else {
+            let child_data = child_snapshot.val();
+            main_chat.innerHTML = "";
+            for (const key in child_data) {
+              render_message(child_data[key].sender, id, child_data[key].content, child_data[key].type);
+              scroll_bottom();
+            }
+          }
+        });
+    });
+}
+
+function load_previous_messages() {
+  loading = true;
+  loading_message_count += 10;
+
+  main_chat.innerHTML = sample.loadingSpin() + main_chat.innerHTML;
+  database
+    .ref("messages")
+    .child(arrange_user_id(auth.currentUser.uid, chatUser.id))
+    .limitToLast(loading_message_count)
+    .get()
+    .then((child_snapshot) => {
+      let child_data = child_snapshot.val();
+      main_chat.innerHTML = "";
+      for (const key in child_data) {
+        render_message(child_data[key].sender, chatUser.id, child_data[key].content, child_data[key].type);
+      }
+      loading = false;
+      setTimeout(() => {
+        main_chat.scrollTop = 5;
+      }, 300);
+    });
+}
+
+function render_message(sender, chatUserId, content, type) {
+  let side;
+  if (sender == chatUser.id) {
+    side = "left";
+  } else if (sender == auth.currentUser.uid && chatUser.id == chatUserId) {
+    side = "right";
+  }
+
+  if (main_chat.innerHTML == sample.noMessageWarning()) {
+    main_chat.innerHTML = "";
+  }
+
+  if (side != undefined) {
+    if (type == "text") main_chat.innerHTML += sample.message(content, side);
+    else if (type == "image") main_chat.innerHTML += sample.image(content, side);
+  }
 }

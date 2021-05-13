@@ -7,6 +7,14 @@
   background-color: #f5f5f5;
 }
 
+.person-focus {
+  background-color: #f2f2f2;
+}
+
+.person-focus:hover {
+  background-color: #f1f1f1;
+}
+
 .person p {
   color: gray;
 }
@@ -35,10 +43,19 @@
   border-bottom: 10px solid #ecebec;
 }
 
+.message-left .image-container {
+  margin-right: auto;
+  margin-left: 0;
+  transform-origin: 0 100%;
+  max-width: 100%;
+}
+
 .message-right p {
   color: white;
   background-color: #0099ff;
   border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
 }
 
 .message-right .msg-container {
@@ -59,6 +76,13 @@
   border-right: 10px solid transparent;
   border-left: 10px solid #0099ff;
   border-bottom: 10px solid #0099ff;
+}
+
+.message-right .image-container {
+  margin-left: auto;
+  margin-right: 0;
+  transform-origin: 100% 100%;
+  max-width: 100%;
 }
 
 #right-panel i {

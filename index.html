@@ -19,7 +19,7 @@
   <body>
     <div id="loading"></div>
 
-    <button style="display: none" type="button" id="openEmailModal" data-bs-toggle="modal" data-bs-target="#emailVerificationModal">Launch demo modal</button>
+    <button class="d-none" type="button" id="openEmailModal" data-bs-toggle="modal" data-bs-target="#emailVerificationModal"></button>
     <div class="modal fade" id="emailVerificationModal" tabindex="-1" aria-labelledby="emailVerificationModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -179,7 +179,7 @@
 
     <template id="chatScreen">
       <div class="d-flex vw-100">
-        <div class="border-end border-bottom vh-100 p-0 d-flex flex-column" style="flex: 0 1 auto">
+        <div class="border-end border-bottom vh-100 p-0 d-flex flex-column" style="flex: 0 1 auto; max-width: 350px;">
           <div style="flex: 0 1 auto">
             <div class="p-3">
               <div class="d-flex justify-content-between align-items-center">
@@ -189,14 +189,14 @@
 
                 <div class="dropdown">
                   <a class="dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="../../img/image.jpg" width="36px" height="36px" style="border-radius: 50px" alt="" />
+                    <img class="profile-picture" width="36px" height="36px" style="border-radius: 50px" alt="" />
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                     <li>
-                      <span onclick="model.signout();" class="dropdown-item"><i class="fa fa-sign-out-alt"></i> Log out</span>
+                      <span class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#currentUserInfo" aria-controls="currentUserInfo"><i class="fa fa-info-circle"></i> Profile</span>
                     </li>
                     <li>
-                      <a class="dropdown-item"><i class="fa fa-info-circle"></i> Info</a>
+                      <span onclick="model.signout();" class="dropdown-item"><i class="fa fa-sign-out-alt"></i> Log out</span>
                     </li>
                   </ul>
                 </div>
@@ -212,43 +212,23 @@
             </div>
           </div>
 
-          <div id="people" class="d-flex flex-column border-top special-scrollbar" style="overflow-x: hidden; overflow-y: auto; flex: 1 1 auto">
-            <div class="p-3 border-bottom d-flex justify-content-between align-items-center person">
-              <div class="d-flex">
-                <img src="../../img/image.jpg" alt="" width="56px" height="56px" style="border-radius: 50%" class="me-md-3" />
-                <div class="d-md-flex d-none flex-column justify-content-center" style="min-width: 180px">
-                  <b>Example person</b>
-                  <p class="m-0">Hello. How are you?</p>
-                </div>
-              </div>
-              <div class="ps-1 align-items-center d-md-flex d-none">
-                <p class="m-0">10:10</p>
-              </div>
-            </div>
-          </div>
+
+          <div id="people" class="d-flex flex-column border-top special-scrollbar" style="overflow-x: hidden; overflow-y: auto; flex: 1 1 auto"></div>
+
+
         </div>
         <div class="vh-100 p-0 d-flex flex-column" style="flex: 1 1 auto" id="right-panel">
           <div style="flex: 0 1 70px; min-height: 70px" class="border-bottom d-flex align-items-center justify-content-between px-3">
-            <div>
-              <img src="../../img/image.jpg" alt="" width="40px" height="40px" style="border-radius: 50px" />
-              <b class="ms-2">Example person</b>
+            <div id="chat-user-info">
+              
             </div>
-            <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Info">
-              <i class="fa fa-info-circle"></i>
-            </a>
+            <span  data-bs-toggle="offcanvas" data-bs-target="#chatUserInfo" aria-controls="chatUserInfo" title="Info">
+              <i data-bs-toggle="tooltip" data-bs-placement="bottom" title="Info" class="fa fa-info-circle"></i>
+            </span>
           </div>
 
           <div id="main-chat" class="overflow-auto pt-3 special-scrollbar" style="flex: 1 1 auto">
-            <div class="d-flex px-5 message-left m-0">
-              <div class="msg-container">
-                <p class="p-2 text-break">Hello. How are you?</p>
-              </div>
-            </div>
-            <div class="d-flex px-5 message-right m-0">
-              <div class="msg-container">
-                <p class="p-2 text-break">I'm fine. Thank you.</p>
-              </div>
-            </div>
+            
           </div>
 
           <div style="flex: 0 1 50px; min-height: 50px" class="d-flex justify-content-evenly align-items-center px-1">
@@ -258,7 +238,7 @@
             </label>
             <label style="flex: 0 1 40px; cursor: pointer" for="gif-browse" class="d-flex justify-content-center">
               <input id="gif-browse" class="d-none" type="file" accept="image/gif" onchange="readImageFile(this, ['image/gif'])" />
-              <img src="../img/gif-icon.png" width="20px" alt="" data-bs-toggle="tooltip" data-bs-placement="top" title="Send a gif" />
+              <svg data-bs-toggle="tooltip" style="outline: none" data-bs-placement="top" title="Send a gif" viewBox="0 0 36 36" height="28px" width="28px"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 11a4 4 0 014-4h8c1.067 0 2.035.417 2.753 1.098.517.491 1.151.902 1.866.902H26a4 4 0 014 4v12a4 4 0 01-4 4h-8a3.986 3.986 0 01-2.752-1.098c-.518-.491-1.152-.902-1.866-.902H10a4 4 0 01-4-4V11zm7.865 4.908a1.948 1.948 0 00-1.321-.456c-.461.02-.918.214-1.295.576-.378.363-.65.873-.754 1.457a2.927 2.927 0 00.209 1.708c.236.52.611.915 1.046 1.14a1.87 1.87 0 001.36.152c.454-.122.88-.419 1.195-.868.098-.14.183-.291.253-.451.068-.154-.052-.316-.22-.316H12.85a.85.85 0 010-1.7h2.8c.47 0 .85.38.85.85a4.53 4.53 0 01-.803 2.593c-.527.75-1.277 1.3-2.144 1.534a3.57 3.57 0 01-2.586-.285c-.8-.414-1.43-1.107-1.811-1.947a4.628 4.628 0 01-.335-2.706 4.357 4.357 0 011.25-2.388 3.697 3.697 0 012.398-1.048 3.647 3.647 0 012.472.838.85.85 0 01-1.076 1.317zM22.7 19.6a.25.25 0 01.25-.25h2.75a.85.85 0 000-1.7h-2.75a.25.25 0 01-.25-.25v-1.45a.25.25 0 01.25-.25h3.2a.85.85 0 100-1.7h-4.3a.85.85 0 00-.85.85v6.3a.85.85 0 001.7 0V19.6zm-3.35-4.75a.85.85 0 00-1.7 0v6.3a.85.85 0 001.7 0v-6.3z" fill="#0099FF"></path></svg>
             </label>
             <input style="flex: 1 1 auto" id="my-input" type="text" placeholder="Message..." autocomplete="off" />
             <span onclick="get_message();" class="d-flex justify-content-center" style="flex: 0 1 50px" data-bs-toggle="tooltip" data-bs-placement="top" title="Send">
@@ -267,6 +247,34 @@
           </div>
         </div>
       </div>
+
+
+      
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="currentUserInfo" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Profile</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <img class="profile-picture"></img>
+          <p>Email: <span id="profile-email"></span></p>
+          <p>Id: <span id="profile-id"></span></p>
+        </div>
+      </div>
+
+
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="chatUserInfo" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Chat info</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <img id="chat-picture"></img>
+          <p>Email: <span id="chat-email"></span></p>
+          <p>Id: <span id="chat-id"></span></p>
+        </div>
+      </div>
+
     </template>
 
     <div id="app"></div>
@@ -279,10 +287,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     <script src="./js/index.js"></script>
     <script src="./js/conponent.js"></script>
+    <script src="./js/sample.js"></script>
     <script src="./js/model.js"></script>
-    <script src="./js/form.js"></script>
-    <script src="./js/chat.js"></script>
+    <script src="./js/controller.js"></script>
     <script src="./js/landing.js"></script>
+    <script src="./js/chat.js" defer></script>
     <script src="./js/view.js" defer></script>
   </body>
 </html>

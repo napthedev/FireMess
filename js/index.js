@@ -31,7 +31,7 @@ const init = function () {
       view.setActiveScreen("chatScreen");
     } else if (user && !user.emailVerified) {
       document.getElementById("openEmailModal").click();
-    } else if (current_view != "signinScreen" && current_view != "registerScreen") {
+    } else if (view.current != "signinScreen" && view.current != "registerScreen") {
       view.setActiveScreen("welcomeScreen");
     }
   });
