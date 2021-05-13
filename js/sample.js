@@ -15,7 +15,7 @@ sample.message = (content, side) => {
 sample.image = (imgURL, side) => {
   return `
   <div class="d-flex px-5 message-${side} mb-2">
-    <img class="image-container zoom-in" src="${imgURL}">
+    <img class="zoom-in" src="${imgURL}">
   </div>
   `;
 };
