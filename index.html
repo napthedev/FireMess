@@ -217,12 +217,15 @@
 
 
         </div>
+
+
+
         <div class="vh-100 p-0 d-flex flex-column" style="flex: 1 1 auto" id="right-panel">
           <div style="flex: 0 1 70px; min-height: 70px" class="border-bottom d-flex align-items-center justify-content-between px-3">
             <div id="chat-user-info">
               
             </div>
-            <span  data-bs-toggle="offcanvas" data-bs-target="#chatUserInfo" aria-controls="chatUserInfo" title="Info">
+            <span data-bs-toggle="offcanvas" data-bs-target="#chatUserInfo" aria-controls="chatUserInfo" title="Info">
               <i data-bs-toggle="tooltip" data-bs-placement="bottom" title="Info" class="fa fa-info-circle"></i>
             </span>
           </div>
@@ -231,7 +234,7 @@
             
           </div>
 
-          <div style="flex: 0 1 50px; min-height: 50px" class="d-flex justify-content-evenly align-items-center px-1">
+          <div style="flex: 0 1 50px; min-height: 50px" class="d-flex justify-content-evenly align-items-center px-1" id="input-box">
             <label style="flex: 0 1 40px; cursor: pointer" for="image-browse" class="d-flex justify-content-center">
               <input id="image-browse" class="d-none" type="file" accept="image/png,image/jpeg" onchange="readImageFile(this, ['image/png', 'image/jpeg'])" />
               <i class="fa fa-image" data-bs-toggle="tooltip" data-bs-placement="top" title="Send an image"></i>
@@ -257,8 +260,10 @@
         </div>
         <div class="offcanvas-body">
           <img class="profile-picture"></img>
-          <p>Email: <span id="profile-email"></span></p>
-          <p>Id: <span id="profile-id"></span></p>
+          <br>
+          <b>Email: </b><span id="profile-email"></span>
+          <br>
+          <b>Id: </b><span id="profile-id"></span>
         </div>
       </div>
 
@@ -270,8 +275,10 @@
         </div>
         <div class="offcanvas-body">
           <img id="chat-picture"></img>
-          <p>Email: <span id="chat-email"></span></p>
-          <p>Id: <span id="chat-id"></span></p>
+          <br>
+          <b>Email: </b><span id="chat-email">Select an user to start chatting</span>
+          <br>
+          <b>Id: </b><span id="chat-id">No user selected yet</span>
         </div>
       </div>
 

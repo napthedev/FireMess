@@ -25,6 +25,16 @@ function init_chat() {
 
   main_chat = document.getElementById("main-chat");
 
+  main_chat.innerHTML = sample.carousel();
+  document.getElementById("chat-user-info").innerHTML = sample.chatUser("https://i.imgur.com/CDqQHpR.jpg", "Select an user to start chatting");
+  let input_box = document.getElementById("input-box").getElementsByTagName("input");
+  for (let i = 0; i < input_box.length; i++) {
+    if(input_box[i].id != "my-input")
+    input_box[i].disabled = true;
+  }
+  document.getElementById("my-input").emojioneArea.disable();
+
+
   let profile_picture_el = document.getElementsByClassName("profile-picture");
   for (let i = 0; i < profile_picture_el.length; i++) {
     profile_picture_el[i].src = auth.currentUser.photoURL;
@@ -35,10 +45,6 @@ function init_chat() {
   database.ref("users").on("child_added", (snapshot) => {
     let user = snapshot.val();
     if (snapshot.key != auth.currentUser.uid) {
-      if (chatUser == undefined) {
-        set_chat_user(snapshot.key);
-      }
-
       document.getElementById("people").innerHTML += sample.person(snapshot.key, user["photoURL"], user["displayName"]);
 
       database
@@ -126,6 +132,8 @@ function set_chat_user(id) {
   if (chatUser?.id == id) return;
 
   main_chat.innerHTML = sample.loadingSpin();
+  loading_message_count = 10;
+
   database
     .ref("users")
     .child(id)
@@ -133,6 +141,13 @@ function set_chat_user(id) {
     .then((snapshot) => {
       chatUser = { ...snapshot.val(), id: id };
       document.getElementById("chat-user-info").innerHTML = sample.chatUser(chatUser.photoURL, chatUser.displayName);
+      let input_box = document.getElementById("input-box").getElementsByTagName("input");
+      for (let i = 0; i < input_box.length; i++) {
+        if(input_box[i].id != "my-input")
+        input_box[i].disabled = false;
+      }
+      document.getElementById("my-input").emojioneArea.enable()
+
       document.getElementsByClassName("person-focus")[0]?.classList.remove("person-focus");
       document.getElementById(id).classList.add("person-focus");
 

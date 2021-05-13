@@ -4,7 +4,7 @@ sample.message = (content, side) => {
   return `
   <div class="d-flex px-5 message-${side} m-0">
     <div class="msg-container zoom-in">
-      <p class="p-2 text-break message-content truncation" onclick="this.classList.toggle('truncation');">
+      <p class="p-2 text-break message-content">
         ${content}
       </p>
     </div>
@@ -52,5 +52,37 @@ sample.loadingSpin = () => {
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
-  `
-}
+  `;
+};
+
+sample.carousel = () => {
+  return `
+  <div id="carouselExampleCaptions" class="carousel carousel-dark slide h-100" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner h-100">
+      <div class="carousel-item active h-100">
+        <img src="https://i.imgur.com/qqQxJQR.png"  width="auto" class="d-block mx-auto h-100" alt="..." />
+      </div>
+      <div class="carousel-item h-100">
+        <img src="https://i.imgur.com/EqqHZiP.png" width="auto" class="d-block mx-auto h-100" alt="..." />
+      </div>
+      <div class="carousel-item h-100">
+        <img src="https://i.imgur.com/zIBXuB3.png" width="auto" class="d-block mx-auto h-100" alt="..." />
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  </div>
+`;
+};
