@@ -46,7 +46,7 @@ function init_chat() {
         .child(arrange_user_id(auth.currentUser.uid, snapshot.key))
         .limitToLast(1)
         .on("child_added", (data) => {
-          document.querySelector(`#${snapshot.key} .recent-content`).innerText = data.val().type == "image" ? "Image" : data.val().content;
+          document.getElementById(snapshot.key).getElementsByClassName("recent-content")[0].innerText = data.val().type == "image" ? "Image" : data.val().content;
           if (!newItems[arrange_user_id(auth.currentUser.uid, snapshot.key)]) return;
           render_message(data.val().sender, snapshot.key, data.val().content, data.val().type);
           scroll_bottom();
