@@ -16,22 +16,22 @@ function switch_screen(screenName) {
   view.current = screenName;
   switch (screenName) {
     case "chatScreen":
-      document.getElementById("app").innerHTML = conponent.chatScreen;
+      document.getElementById("app").innerHTML = component.chatScreen;
       init_chat();
       break;
 
     case "registerScreen":
-      document.getElementById("app").innerHTML = conponent.registerScreen;
+      document.getElementById("app").innerHTML = component.registerScreen;
       registerSubmit();
       break;
 
     case "signinScreen":
-      document.getElementById("app").innerHTML = conponent.signinScreen;
+      document.getElementById("app").innerHTML = component.signinScreen;
       signinSubmit();
       break;
 
     case "welcomeScreen":
-      document.getElementById("app").innerHTML = conponent.welcomeScreen;
+      document.getElementById("app").innerHTML = component.welcomeScreen;
       init_landing();
       break;
 
