@@ -17,7 +17,7 @@ function init_chat() {
 
   let my_input = $("#my-input").emojioneArea();
   my_input[0].emojioneArea.on("keydown", function (btn, event) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       get_message();
     }
   });
@@ -28,11 +28,9 @@ function init_chat() {
   document.getElementById("chat-user-info").innerHTML = sample.chatUser("https://i.imgur.com/CDqQHpR.jpg", "Select an user to start chatting");
   let input_box = document.getElementById("input-box").getElementsByTagName("input");
   for (let i = 0; i < input_box.length; i++) {
-    if(input_box[i].id != "my-input")
-    input_box[i].disabled = true;
+    if (input_box[i].id != "my-input") input_box[i].disabled = true;
   }
   document.getElementById("my-input").emojioneArea.disable();
-
 
   let profile_picture_el = document.getElementsByClassName("profile-picture");
   for (let i = 0; i < profile_picture_el.length; i++) {
@@ -51,7 +49,7 @@ function init_chat() {
         .child(arrange_user_id(auth.currentUser.uid, snapshot.key))
         .limitToLast(1)
         .on("child_added", (data) => {
-          document.getElementById(snapshot.key).getElementsByClassName("recent-content")[0].innerText = data.val().type == "image" ? "Image" : data.val().content;
+          document.getElementById(snapshot.key).getElementsByClassName("recent-content")[0].innerText = data.val().type === "image" ? "Image" : data.val().content;
           if (!newItems[arrange_user_id(auth.currentUser.uid, snapshot.key)]) return;
           render_message(data.val().sender, snapshot.key, data.val().content, data.val().type);
           scroll_bottom();
@@ -67,7 +65,7 @@ function init_chat() {
   });
 
   main_chat.addEventListener("scroll", () => {
-    if (main_chat.scrollTop == 0 && main_chat.scrollHeight > main_chat.clientHeight && !loading) {
+    if (main_chat.scrollTop === 0 && main_chat.scrollHeight > main_chat.clientHeight && !loading) {
       load_previous_messages();
     }
   });

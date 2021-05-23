@@ -7,7 +7,7 @@ model.register = (data) => {
       auth.currentUser.updateProfile({
         displayName: data.firstName + " " + data.lastName,
         email: data.email,
-        photoURL: "https://i.imgur.com/CDqQHpR.jpg",
+        photoURL: `https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=${data.firstName.replace(" ", "+")}+${data.lastName.replace(" ", "+")}`,
       });
 
       auth.currentUser.sendEmailVerification();
@@ -15,35 +15,37 @@ model.register = (data) => {
     })
     .catch((err) => {
       console.log(err);
-      alert(err.message);
+      if (err.code === "auth/email-already-in-use") {
+        email_duplicate = data.email;
+        registerOptionalValidation(document.getElementById("register-form"));
+      }
     });
 };
 
-model.signin = (data) => {
+model.signIn = (data) => {
   auth
     .signInWithEmailAndPassword(data.email, data.password)
     .then((user) => {
       console.log(user);
     })
     .catch((err) => {
-      alert(err.message);
+      console.log(err);
+      if (err.code === "auth/user-not-found") {
+        email_not_found = data.email;
+      } else if (err.code === "auth/wrong-password") {
+        password_wrong = data.password;
+      }
+      signInOptionalValidation(document.getElementById("sign-in-form"))
     });
 };
 
-model.signout = () => {
+model.signOut = () => {
   auth.signOut().catch((err) => {
     console.log(err);
   });
 };
 
-model.resendEmail = () => {
-  auth.currentUser.sendEmailVerification().catch((err) => {
-    console.log(err);
-    alert(err.message);
-  });
-};
-
-model.signinWithGoogle = () => {
+model.signInWithGoogle = () => {
   let googleProvider = new firebase.auth.GoogleAuthProvider();
   auth
     .signInWithPopup(googleProvider)
@@ -55,7 +57,7 @@ model.signinWithGoogle = () => {
       alert(err.message);
     });
 };
-model.signinWithFacebook = () => {
+model.signInWithFacebook = () => {
   let facebookProvider = new firebase.auth.FacebookAuthProvider();
   auth
     .signInWithPopup(facebookProvider)

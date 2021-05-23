@@ -60,3 +60,16 @@
   height: 100vh;
   scroll-snap-align: center;
 }
+
+@media only screen and (max-width: 768px) {
+  .landing-page {
+    overflow-y: scroll;
+    height: 100vh;
+    scroll-snap-type: none;
+  }
+  
+  .section {
+    height: auto;
+    scroll-snap-align: none;
+  }
+}

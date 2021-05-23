@@ -1,9 +1,33 @@
 let format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+let email_duplicate = "";
+function registerOptionalValidation(el) {
+  el.confirmPassword.setCustomValidity(el.confirmPassword.value != el.password.value ? "." : "");
+  el.firstName.setCustomValidity(el.firstName.value.trim() === "" || format.test(el.firstName.value) ? "." : "");
+  el.lastName.setCustomValidity(el.lastName.value.trim() === "" || format.test(el.lastName.value) ? "." : "");
+  el.email.setCustomValidity(el.email.value === email_duplicate ? "." : "");
+  if (el.email.value === email_duplicate && email_duplicate) {
+    document.getElementById("register-email-error").innerText = "Email is in use by another account.";
+  } else {
+    document.getElementById("register-email-error").innerText = "Please provide a valid email.";
+  }
+}
 
-function optionalValidation() {
-  confirmPassword.setCustomValidity(confirmPassword.value != password.value ? "Passwords do not match." : "");
-  firstName.setCustomValidity(firstName.value.trim() == "" || format.test(firstName.value) ? "Please enter your first name." : "");
-  lastName.setCustomValidity(lastName.value.trim() == "" || format.test(lastName.value) ? "Please enter your last name." : "");
+let email_not_found = "";
+let password_wrong = "";
+function signInOptionalValidation(el) {
+  el.email.setCustomValidity(el.email.value === email_not_found ? "." : "");
+  el.password.setCustomValidity(el.password.value === password_wrong ? "." : "");
+  if (el.email.value === email_not_found && email_not_found) {
+    document.getElementById("sign-in-email-error").innerText = "The email address you entered isn't connected to any account.";
+  } else {
+    document.getElementById("sign-in-email-error").innerText = "Please provide a valid email.";
+  }
+
+  if (el.password.value === password_wrong && password_wrong) {
+    document.getElementById("sign-in-password-error").innerText = "The password that you've entered is incorrect.";
+  } else {
+    document.getElementById("sign-in-password-error").innerText = "Please input your password";
+  }
 }
 
 const registerSubmit = function () {
@@ -26,8 +50,8 @@ const registerSubmit = function () {
   });
 };
 
-const signinSubmit = function () {
-  let login_form = document.getElementById("signin-form");
+const signInSubmit = function () {
+  let login_form = document.getElementById("sign-in-form");
   login_form.addEventListener("submit", function (event) {
     event.preventDefault();
     if (!login_form.checkValidity()) {
@@ -37,7 +61,7 @@ const signinSubmit = function () {
         email: login_form["email"].value.trim(),
         password: login_form["password"].value,
       };
-      model.signin(login_data);
+      model.signIn(login_data);
     }
     login_form.classList.add("was-validated");
   });

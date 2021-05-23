@@ -2,7 +2,7 @@ const view = {};
 view.current = "";
 
 view.setActiveScreen = function (screenName) {
-  if (view.current == "") {
+  if (view.current === "") {
     switch_screen(screenName);
   } else {
     document.getElementById("loading").classList.add("load-animation");
@@ -25,9 +25,9 @@ function switch_screen(screenName) {
       registerSubmit();
       break;
 
-    case "signinScreen":
-      document.getElementById("app").innerHTML = component.signinScreen;
-      signinSubmit();
+    case "signInScreen":
+      document.getElementById("app").innerHTML = component.signInScreen;
+      signInSubmit();
       break;
 
     case "welcomeScreen":

@@ -29,7 +29,7 @@ let emoji_replace_list = {
 };
 
 function set_chat_user(id) {
-  if (chatUser?.id == id) return;
+  if (chatUser?.id === id) return;
 
   main_chat.innerHTML = sample.loadingSpin();
   loading_message_count = 10;
@@ -60,7 +60,7 @@ function set_chat_user(id) {
         .limitToLast(loading_message_count)
         .get()
         .then((child_snapshot) => {
-          if (!child_snapshot.exists() && chatUser.id == id) {
+          if (!child_snapshot.exists() && chatUser.id === id) {
             main_chat.innerHTML = sample.noMessageWarning();
           } else {
             let child_data = child_snapshot.val();
@@ -99,19 +99,19 @@ function load_previous_messages() {
 
 function render_message(sender, chatUserId, content, type) {
   let side;
-  if (sender == chatUser.id) {
+  if (sender === chatUser.id) {
     side = "left";
-  } else if (sender == auth.currentUser.uid && chatUser.id == chatUserId) {
+  } else if (sender === auth.currentUser.uid && chatUser.id === chatUserId) {
     side = "right";
   }
 
-  if (main_chat.innerHTML == sample.noMessageWarning()) {
+  if (main_chat.innerHTML === sample.noMessageWarning()) {
     main_chat.innerHTML = "";
   }
 
   if (side != undefined) {
-    if (type == "text") main_chat.innerHTML += sample.message(content, side);
-    else if (type == "image") main_chat.innerHTML += sample.image(content, side);
+    if (type === "text") main_chat.innerHTML += sample.message(content, side);
+    else if (type === "image") main_chat.innerHTML += sample.image(content, side);
   }
 }
 

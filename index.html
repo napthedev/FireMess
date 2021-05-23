@@ -30,7 +30,6 @@
           <div class="modal-body">Please verify your email</div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button onclick="model.resendEmail();" type="button" class="btn btn-primary" data-bs-dismiss="modal">Resend email</button>
           </div>
         </div>
       </div>
@@ -43,8 +42,8 @@
             <div class="d-flex justify-content-between align-items-center pb-2 pb-md-5">
               <a href=""><img src="https://i.imgur.com/WZqIKV4.png" alt="" /></a>
               <div class="d-flex align-items-center">
-                <b onclick="to_register();" style="font-size: 18px; cursor: pointer" class="mx-2 navbar-link">SIGN UP</b>
-                <b onclick="to_signin();" style="font-size: 18px; cursor: pointer" class="mx-2 navbar-link">LOG IN</b>
+                <b onclick="view.setActiveScreen('registerScreen');;" style="font-size: 18px; cursor: pointer" class="mx-2 navbar-link">SIGN UP</b>
+                <b onclick="view.setActiveScreen('signInScreen');;" style="font-size: 18px; cursor: pointer" class="mx-2 navbar-link">LOG IN</b>
               </div>
             </div>
             <div class="row">
@@ -54,7 +53,7 @@
               <div class="col-md-5 d-flex flex-column justify-content-around py-5 fade-right" style="height: 300px">
                 <h1 class="mb-4" style="font-size: 45x">The best way to chat with your friends</h1>
                 <div class="d-flex d-md-block justify-content-center">
-                  <button onclick="to_register();" class="btn btn-primary btn-lg mb-4">Get started</button>
+                  <button onclick="view.setActiveScreen('registerScreen');" class="btn btn-primary btn-lg mb-4">Get started</button>
                 </div>
               </div>
             </div>
@@ -85,7 +84,7 @@
       </div>
     </template>
 
-    <template id="signinScreen">
+    <template id="signInScreen">
       <div class="vh-100 vw-100 form-background"></div>
       <div class="d-flex justify-content-center">
         <div class="form-container">
@@ -94,26 +93,26 @@
           </div>
 
           <div>
-            <button class="login-btn" onclick="model.signinWithGoogle()"><img src="https://i.imgur.com/yq4Tp3N.png" width="30px" alt="" /> Log in with Google</button>
+            <button class="login-btn" onclick="model.signInWithGoogle()"><img src="https://i.imgur.com/yq4Tp3N.png" width="30px" alt="" /> Log in with Google</button>
           </div>
           <div>
-            <button class="login-btn" onclick="model.signinWithFacebook()"><img src="https://i.imgur.com/rtyMt5a.png" width="30px" style="border-radius: 50px" alt="" /> Log in with Facebook</button>
+            <button class="login-btn" onclick="model.signInWithFacebook()"><img src="https://i.imgur.com/rtyMt5a.png" width="30px" style="border-radius: 50px" alt="" /> Log in with Facebook</button>
           </div>
 
           <hr />
-          <form id="signin-form" class="row g-3 needs-validation" novalidate>
+          <form id="sign-in-form" class="row g-3 needs-validation" novalidate oninput="signInOptionalValidation(this)">
             <div class="col-md-12">
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" id="email" required />
-              <div class="invalid-feedback">Please provide a valid email.</div>
+              <div class="invalid-feedback" id="sign-in-email-error">Please provide a valid email.</div>
             </div>
             <div class="col-md-12">
               <label for="password" class="form-label">Password</label>
               <input type="password" class="form-control" id="password" required />
-              <div class="invalid-feedback">Please input your password</div>
+              <div class="invalid-feedback" id="sign-in-password-error">Please input your password</div>
             </div>
             <div class="col-md-12">
-              <span onclick="to_register();" class="link-primary">Haven't got any account? Sign up</span>
+              <span onclick="view.setActiveScreen('registerScreen');;" class="link-primary">Haven't got any account? Sign up</span>
             </div>
             <div class="d-grid gap-2 col-md-12">
               <button class="btn btn-primary" type="submit">Log in</button>
@@ -132,15 +131,15 @@
           </div>
 
           <div>
-            <button class="login-btn" onclick="model.signinWithGoogle()"><img src="https://i.imgur.com/yq4Tp3N.png" width="30px" alt="" /> Log in with Google</button>
+            <button class="login-btn" onclick="model.signInWithGoogle()"><img src="https://i.imgur.com/yq4Tp3N.png" width="30px" alt="" /> Log in with Google</button>
           </div>
           <div>
-            <button class="login-btn" onclick="model.signinWithFacebook()"><img src="https://i.imgur.com/rtyMt5a.png" width="30px" style="border-radius: 50px" alt="" /> Log in with Facebook</button>
+            <button class="login-btn" onclick="model.signInWithFacebook()"><img src="https://i.imgur.com/rtyMt5a.png" width="30px" style="border-radius: 50px" alt="" /> Log in with Facebook</button>
           </div>
 
           <hr />
 
-          <form id="register-form" class="row g-3 needs-validation" novalidate oninput="optionalValidation();">
+          <form id="register-form" class="row g-3 needs-validation" novalidate oninput="registerOptionalValidation(this);">
             <div class="col-md-6">
               <label for="firstName" class="form-label">First name</label>
               <input type="text" class="form-control" id="firstName" required />
@@ -154,7 +153,7 @@
             <div class="col-md-12">
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" id="email" required />
-              <div class="invalid-feedback">Please provide a valid email.</div>
+              <div class="invalid-feedback" id="register-email-error">Please provide a valid email.</div>
             </div>
             <div class="col-md-12">
               <label for="password" class="form-label">Password</label>
@@ -167,7 +166,7 @@
               <div class="invalid-feedback">Passwords do not match.</div>
             </div>
             <div class="col-md-12">
-              <span onclick="to_signin();" class="link-primary">Already have an account? Log in</span>
+              <span onclick="view.setActiveScreen('signInScreen');;" class="link-primary">Already have an account? Log in</span>
             </div>
             <div class="d-grid gap-2 col-md-12">
               <button class="btn btn-primary" type="submit">Sign up</button>
@@ -196,7 +195,7 @@
                       <span class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#currentUserInfo" aria-controls="currentUserInfo"><i class="fa fa-info-circle"></i> Profile</span>
                     </li>
                     <li>
-                      <span onclick="model.signout();" class="dropdown-item"><i class="fa fa-sign-out-alt"></i> Log out</span>
+                      <span onclick="model.signOut();" class="dropdown-item"><i class="fa fa-sign-out-alt"></i> Log out</span>
                     </li>
                   </ul>
                 </div>
@@ -299,7 +298,7 @@
     <script src="./js/controller.js" defer></script>
     <script src="./js/landing.js" defer></script>
     <script src="./js/chat.js" defer></script>
-    <script src="./js/rendering.js" defer></script>
+    <script src="./js/render.js" defer></script>
     <script src="./js/view.js" defer></script>
   </body>
 </html>
