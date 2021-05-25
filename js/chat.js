@@ -1,4 +1,4 @@
-let chatUser = undefined;
+let chatUser;
 let newItems = {};
 let main_chat;
 let loading = false;
@@ -42,7 +42,7 @@ function init_chat() {
   database.ref("users").on("child_added", (snapshot) => {
     let user = snapshot.val();
     if (snapshot.key != auth.currentUser.uid) {
-      document.getElementById("people").innerHTML += sample.person(snapshot.key, user["photoURL"], user["displayName"]);
+      document.getElementById("people").innerHTML += sample.person(snapshot.key, user.photoURL, user.displayName);
 
       database
         .ref("messages")
@@ -96,7 +96,7 @@ function readImageFile(el, type) {
     function () {
       if (file.size > 3145728) {
         alert("File is too big!!!");
-      } else if (type.includes(file["type"])) {
+      } else if (type.includes(file.type)) {
         database.ref("messages").child(arrange_user_id(auth.currentUser.uid, chatUser.id)).push({
           sender: auth.currentUser.uid,
           content: reader.result,

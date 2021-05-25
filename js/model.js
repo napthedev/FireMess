@@ -35,7 +35,7 @@ model.signIn = (data) => {
       } else if (err.code === "auth/wrong-password") {
         password_wrong = data.password;
       }
-      signInOptionalValidation(document.getElementById("sign-in-form"))
+      signInOptionalValidation(document.getElementById("sign-in-form"));
     });
 };
 
@@ -64,7 +64,7 @@ model.signInWithFacebook = () => {
     .then((result) => {
       console.log(result);
       auth.currentUser.updateProfile({
-        photoURL: result["additionalUserInfo"]["profile"]["picture"]["data"]["url"],
+        photoURL: result.additionalUserInfo.profile.picture.data.url,
       });
     })
     .catch((err) => {

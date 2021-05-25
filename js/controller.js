@@ -38,11 +38,11 @@ const registerSubmit = function () {
       event.stopPropagation();
     } else {
       let register_data = {
-        firstName: register_form["firstName"].value.trim(),
-        lastName: register_form["lastName"].value.trim(),
-        email: register_form["email"].value.trim(),
-        password: register_form["password"].value,
-        confirmPassword: register_form["confirmPassword"].value,
+        firstName: register_form.firstName.value.trim(),
+        lastName: register_form.lastName.value.trim(),
+        email: register_form.email.value.trim(),
+        password: register_form.password.value,
+        confirmPassword: register_form.confirmPassword.value,
       };
       model.register(register_data);
     }
@@ -58,8 +58,8 @@ const signInSubmit = function () {
       event.stopPropagation();
     } else {
       let login_data = {
-        email: login_form["email"].value.trim(),
-        password: login_form["password"].value,
+        email: login_form.email.value.trim(),
+        password: login_form.password.value,
       };
       model.signIn(login_data);
     }

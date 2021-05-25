@@ -14,7 +14,7 @@ let emoji_replace_list = {
   "😳": ["O_O", "o_o", "0_0"],
   "😊": ["^_^", "^~^", "=)"],
   "😠": [">:(", ">:-(", ">:o", ">:-o", ">:O", ">:-O"],
-  "😎": ["8)", "B)", "8-)", "B-)"],
+  "😎": ["8)", "B)", "8-)", "B-)", ":))"],
   "😚": ["-3-"],
   "😉": [";)", ";-)"],
   "😲": [":O", ":o", ":-O", ":-o"],
@@ -22,17 +22,17 @@ let emoji_replace_list = {
   "😘": [";*", ";-*"],
   "😕": [":/", ":-/", ":\\", ":-\\", "=/", "=\\"],
   "🙂": [":)", ":]", ":-)", "(:", "(="],
-  "😎": [":))"],
   "♥": ["<3"],
   "😂": [":')"],
   "🤑": ["$-)"],
 };
 
 function set_chat_user(id) {
-  if (chatUser?.id === id) return;
-
+  // jshint ignore:start
+  if (chatUser?.id === id) return 0;
   main_chat.innerHTML = sample.loadingSpin();
   loading_message_count = 10;
+  // jshint ignore:end
 
   database
     .ref("users")
@@ -47,7 +47,7 @@ function set_chat_user(id) {
       }
       document.getElementById("my-input").emojioneArea.enable();
 
-      document.getElementsByClassName("person-focus")[0]?.classList.remove("person-focus");
+      document.getElementsByClassName("person-focus")[0]?.classList.remove("person-focus"); // jshint ignore:line
       document.getElementById(id).classList.add("person-focus");
 
       document.getElementById("chat-picture").src = chatUser.photoURL;

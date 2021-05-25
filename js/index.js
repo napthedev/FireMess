@@ -47,7 +47,7 @@ document.addEventListener("animationend", function (event) {
 
 document.getElementById("emailVerificationModal").addEventListener("hidden.bs.modal", function () {
   auth.signOut();
-  view.setActiveScreen('signInScreen');;
+  view.setActiveScreen("signInScreen");
 });
 
 window.onload = init;
