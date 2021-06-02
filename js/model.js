@@ -7,7 +7,7 @@ model.register = (data) => {
       auth.currentUser.updateProfile({
         displayName: data.firstName + " " + data.lastName,
         email: data.email,
-        photoURL: `https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=${data.firstName.replace(" ", "+")}+${data.lastName.replace(" ", "+")}`,
+        photoURL: `https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=${data.firstName} + ${data.lastName}`,
       });
 
       auth.currentUser.sendEmailVerification();

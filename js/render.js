@@ -28,11 +28,12 @@ let emoji_replace_list = {
 };
 
 function set_chat_user(id) {
-  // jshint ignore:start
-  if (chatUser?.id === id) return 0;
+  if (chatUser?.id === id) return;
   main_chat.innerHTML = sample.loadingSpin();
   loading_message_count = 10;
-  // jshint ignore:end
+
+  document.getElementById("right-panel").style.display = "flex";
+  document.getElementById("carouselWrapper").style.display = "none";
 
   database
     .ref("users")
@@ -47,7 +48,7 @@ function set_chat_user(id) {
       }
       document.getElementById("my-input").emojioneArea.enable();
 
-      document.getElementsByClassName("person-focus")[0]?.classList.remove("person-focus"); // jshint ignore:line
+      document.getElementsByClassName("person-focus")[0]?.classList.remove("person-focus");
       document.getElementById(id).classList.add("person-focus");
 
       document.getElementById("chat-picture").src = chatUser.photoURL;

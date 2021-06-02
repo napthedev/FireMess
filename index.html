@@ -103,12 +103,12 @@
           <form id="sign-in-form" class="row g-3 needs-validation" novalidate oninput="signInOptionalValidation(this)">
             <div class="col-md-12">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" required />
+              <input type="email" class="form-control" name="email" required />
               <div class="invalid-feedback" id="sign-in-email-error">Please provide a valid email.</div>
             </div>
             <div class="col-md-12">
               <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" required />
+              <input type="password" class="form-control" name="password" required />
               <div class="invalid-feedback" id="sign-in-password-error">Please input your password</div>
             </div>
             <div class="col-md-12">
@@ -142,31 +142,31 @@
           <form id="register-form" class="row g-3 needs-validation" novalidate oninput="registerOptionalValidation(this);">
             <div class="col-md-6">
               <label for="firstName" class="form-label">First name</label>
-              <input type="text" class="form-control" id="firstName" required />
+              <input type="text" class="form-control" name="firstName" required />
               <div class="invalid-feedback">Please enter your first name.</div>
             </div>
             <div class="col-md-6">
               <label for="lastName" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="lastName" required />
+              <input type="text" class="form-control" name="lastName" required />
               <div class="invalid-feedback">Please enter your last name.</div>
             </div>
             <div class="col-md-12">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" required />
+              <input type="email" class="form-control" name="email" required />
               <div class="invalid-feedback" id="register-email-error">Please provide a valid email.</div>
             </div>
             <div class="col-md-12">
               <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" required pattern=".{6,18}" />
+              <input type="password" class="form-control" name="password" required pattern=".{6,18}" />
               <div class="invalid-feedback">Password must be between 6-18 characters.</div>
             </div>
             <div class="col-md-12">
               <label for="confirmPassword" class="form-label">Confirm password</label>
-              <input type="password" class="form-control" id="confirmPassword" required pattern=".{6,18}" />
+              <input type="password" class="form-control" name="confirmPassword" required pattern=".{6,18}" />
               <div class="invalid-feedback">Passwords do not match.</div>
             </div>
             <div class="col-md-12">
-              <span onclick="view.setActiveScreen('signInScreen');;" class="link-primary">Already have an account? Log in</span>
+              <span onclick="view.setActiveScreen('signInScreen');" class="link-primary">Already have an account? Log in</span>
             </div>
             <div class="d-grid gap-2 col-md-12">
               <button class="btn btn-primary" type="submit">Sign up</button>
@@ -219,7 +219,7 @@
 
 
 
-        <div class="vh-100 p-0 d-flex flex-column" style="flex: 1 1 auto" id="right-panel">
+        <div class="vh-100 p-0 flex-column" style="flex: 1 1 auto" id="right-panel">
           <div style="flex: 0 1 70px; min-height: 70px" class="border-bottom d-flex align-items-center justify-content-between px-3">
             <div id="chat-user-info">
               
@@ -240,7 +240,7 @@
             </label>
             <label style="flex: 0 1 40px; cursor: pointer" for="gif-browse" class="d-flex justify-content-center">
               <input id="gif-browse" class="d-none" type="file" accept="image/gif" onchange="readImageFile(this, ['image/gif'])" />
-              <svg data-bs-toggle="tooltip" style="outline: none" data-bs-placement="top" title="Send a gif" viewBox="0 0 36 36" height="28px" width="28px"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 11a4 4 0 014-4h8c1.067 0 2.035.417 2.753 1.098.517.491 1.151.902 1.866.902H26a4 4 0 014 4v12a4 4 0 01-4 4h-8a3.986 3.986 0 01-2.752-1.098c-.518-.491-1.152-.902-1.866-.902H10a4 4 0 01-4-4V11zm7.865 4.908a1.948 1.948 0 00-1.321-.456c-.461.02-.918.214-1.295.576-.378.363-.65.873-.754 1.457a2.927 2.927 0 00.209 1.708c.236.52.611.915 1.046 1.14a1.87 1.87 0 001.36.152c.454-.122.88-.419 1.195-.868.098-.14.183-.291.253-.451.068-.154-.052-.316-.22-.316H12.85a.85.85 0 010-1.7h2.8c.47 0 .85.38.85.85a4.53 4.53 0 01-.803 2.593c-.527.75-1.277 1.3-2.144 1.534a3.57 3.57 0 01-2.586-.285c-.8-.414-1.43-1.107-1.811-1.947a4.628 4.628 0 01-.335-2.706 4.357 4.357 0 011.25-2.388 3.697 3.697 0 012.398-1.048 3.647 3.647 0 012.472.838.85.85 0 01-1.076 1.317zM22.7 19.6a.25.25 0 01.25-.25h2.75a.85.85 0 000-1.7h-2.75a.25.25 0 01-.25-.25v-1.45a.25.25 0 01.25-.25h3.2a.85.85 0 100-1.7h-4.3a.85.85 0 00-.85.85v6.3a.85.85 0 001.7 0V19.6zm-3.35-4.75a.85.85 0 00-1.7 0v6.3a.85.85 0 001.7 0v-6.3z" fill="#0099FF"></path></svg>
+              <svg data-bs-toggle="tooltip" style="outline: none" data-bs-placement="top" title="Send a gif" viewbox="0 0 36 36" height="28px" width="28px"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 11a4 4 0 014-4h8c1.067 0 2.035.417 2.753 1.098.517.491 1.151.902 1.866.902H26a4 4 0 014 4v12a4 4 0 01-4 4h-8a3.986 3.986 0 01-2.752-1.098c-.518-.491-1.152-.902-1.866-.902H10a4 4 0 01-4-4V11zm7.865 4.908a1.948 1.948 0 00-1.321-.456c-.461.02-.918.214-1.295.576-.378.363-.65.873-.754 1.457a2.927 2.927 0 00.209 1.708c.236.52.611.915 1.046 1.14a1.87 1.87 0 001.36.152c.454-.122.88-.419 1.195-.868.098-.14.183-.291.253-.451.068-.154-.052-.316-.22-.316H12.85a.85.85 0 010-1.7h2.8c.47 0 .85.38.85.85a4.53 4.53 0 01-.803 2.593c-.527.75-1.277 1.3-2.144 1.534a3.57 3.57 0 01-2.586-.285c-.8-.414-1.43-1.107-1.811-1.947a4.628 4.628 0 01-.335-2.706 4.357 4.357 0 011.25-2.388 3.697 3.697 0 012.398-1.048 3.647 3.647 0 012.472.838.85.85 0 01-1.076 1.317zM22.7 19.6a.25.25 0 01.25-.25h2.75a.85.85 0 000-1.7h-2.75a.25.25 0 01-.25-.25v-1.45a.25.25 0 01.25-.25h3.2a.85.85 0 100-1.7h-4.3a.85.85 0 00-.85.85v6.3a.85.85 0 001.7 0V19.6zm-3.35-4.75a.85.85 0 00-1.7 0v6.3a.85.85 0 001.7 0v-6.3z" fill="#0099FF"></path></svg>
             </label>
             <input style="flex: 1 1 auto" id="my-input" type="text" placeholder="Message..." autocomplete="off" />
             <span onclick="get_message();" class="d-flex justify-content-center" style="flex: 0 1 50px" data-bs-toggle="tooltip" data-bs-placement="top" title="Send">
@@ -248,17 +248,46 @@
             </span>
           </div>
         </div>
+
+        <div class="vh-100 p-0 flex-column" id="carouselWrapper" style="flex: 1 1 auto">
+          <div id="myCarousel" class="carousel carousel-dark slide h-100" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner h-100" style="max-width: 100%;">
+              <div class="carousel-item active h-100" style="max-width: 100%;">
+                <img src="https://i.imgur.com/qqQxJQR.png"  width="auto" class="d-block mx-auto h-100" style="max-width: 100%;" alt="..." />
+              </div>
+              <div class="carousel-item h-100" style="max-width: 100%;">
+                <img src="https://i.imgur.com/EqqHZiP.png" width="auto" class="d-block mx-auto h-100" style="max-width: 100%;" alt="..." />
+              </div>
+              <div class="carousel-item h-100" style="max-width: 100%;">
+                <img src="https://i.imgur.com/zIBXuB3.png" width="auto" class="d-block mx-auto h-100" style="max-width: 100%;" alt="..." />
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
       </div>
 
 
       
-      <div class="offcanvas offcanvas-start" tabindex="-1" id="currentUserInfo" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="currentUserInfo" aria-labelledby="User-profile-offcanvas">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Profile</h5>
+          <h5 class="offcanvas-title" id="User-profile-offcanvas">Profile</h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <img class="profile-picture"></img>
+          <img class="profile-picture">
           <br>
           <b>Email: </b><span id="profile-email"></span>
           <br>
@@ -267,17 +296,17 @@
       </div>
 
 
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="chatUserInfo" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="chatUserInfo" aria-labelledby="chat-user-offcanvas">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Chat info</h5>
+          <h5 class="offcanvas-title" id="chat-user-offcanvas">Chat info</h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <img id="chat-picture"></img>
+          <img id="chat-picture">
           <br>
-          <b>Email: </b><span id="chat-email">Select an user to start chatting</span>
+          <b>Email: </b><span id="chat-email"></span>
           <br>
-          <b>Id: </b><span id="chat-id">No user selected yet</span>
+          <b>Id: </b><span id="chat-id"></span>
         </div>
       </div>
 

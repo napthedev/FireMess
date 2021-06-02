@@ -22,15 +22,9 @@ function init_chat() {
     }
   });
 
-  main_chat = document.getElementById("main-chat");
+  document.getElementById("right-panel").style.display = "none";
 
-  main_chat.innerHTML = sample.carousel();
-  document.getElementById("chat-user-info").innerHTML = sample.chatUser("https://i.imgur.com/CDqQHpR.jpg", "Select an user to start chatting");
-  let input_box = document.getElementById("input-box").getElementsByTagName("input");
-  for (let i = 0; i < input_box.length; i++) {
-    if (input_box[i].id != "my-input") input_box[i].disabled = true;
-  }
-  document.getElementById("my-input").emojioneArea.disable();
+  main_chat = document.getElementById("main-chat");
 
   let profile_picture_el = document.getElementsByClassName("profile-picture");
   for (let i = 0; i < profile_picture_el.length; i++) {
