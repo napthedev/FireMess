@@ -1,10 +1,10 @@
 const sample = {};
 
-sample.message = (content, side) => {
+sample.message = (content, side, timestamp) => {
   return `
   <div class="d-flex px-5 message-${side} m-0">
     <div class="msg-container zoom-in">
-      <p class="p-2 text-break message-content">
+      <p class="p-2 text-break message-content" data-bs-toggle="tooltip" data-bs-placement="${side === "right" ? "left" : "right"}" title="${render_time(new Date(timestamp))}">
         ${content}
       </p>
     </div>

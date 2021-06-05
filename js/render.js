@@ -27,6 +27,25 @@ let emoji_replace_list = {
   "🤑": ["$-)"],
 };
 
+function replace_emoji(text) {
+  text = ` ${text} `;
+
+  for (const key in emoji_replace_list) {
+    for (let i = 0; i < emoji_replace_list[key].length; i++) {
+      text = text.replace(" " + emoji_replace_list[key][i] + " ", " " + key + " ");
+    }
+  }
+
+  return text.trim();
+}
+
+function init_tooltip() {
+  let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+}
+
 function set_chat_user(id) {
   if (chatUser?.id === id) return;
   main_chat.innerHTML = sample.loadingSpin();
@@ -67,9 +86,10 @@ function set_chat_user(id) {
             let child_data = child_snapshot.val();
             main_chat.innerHTML = "";
             for (const key in child_data) {
-              render_message(child_data[key].sender, id, child_data[key].content, child_data[key].type);
-              scroll_bottom();
+              render_message(child_data[key], id);
             }
+            scroll_bottom();
+            init_tooltip();
           }
         });
     });
@@ -89,7 +109,7 @@ function load_previous_messages() {
       let child_data = child_snapshot.val();
       main_chat.innerHTML = "";
       for (const key in child_data) {
-        render_message(child_data[key].sender, chatUser.id, child_data[key].content, child_data[key].type);
+        render_message(child_data, chatUser.id);
       }
       loading = false;
       setTimeout(() => {
@@ -98,7 +118,8 @@ function load_previous_messages() {
     });
 }
 
-function render_message(sender, chatUserId, content, type) {
+function render_message(child_data, chatUserId) {
+  let { sender, content, type, server_timestamp } = child_data;
   let side;
   if (sender === chatUser.id) {
     side = "left";
@@ -111,9 +132,23 @@ function render_message(sender, chatUserId, content, type) {
   }
 
   if (side != undefined) {
-    if (type === "text") main_chat.innerHTML += sample.message(content, side);
-    else if (type === "image") main_chat.innerHTML += sample.image(content, side);
+    if (type === "text") main_chat.innerHTML += sample.message(content, side, server_timestamp);
+    else if (type === "image") main_chat.innerHTML += sample.image(content, side, server_timestamp);
   }
+}
+
+function render_time(time) {
+  let hours = time.getHours();
+  let am_pm = hours >= 12 ? "PM": "AM";
+  return `${format_time_unit(hours % 12)}:${format_time_unit(time.getMinutes())}:${format_time_unit(time.getSeconds())} ${am_pm} ${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()}`;
+}
+
+function format_time_unit(unit) {
+  unit = String(unit);
+  if(unit.length < 2){
+    return "0" + unit;
+  }
+  return unit;
 }
 
 function arrange_user_id(id1, id2) {
@@ -122,18 +157,6 @@ function arrange_user_id(id1, id2) {
 
 function scroll_bottom() {
   setTimeout(() => {
-    main_chat.scrollTop = main_chat.scrollHeight - main_chat.clientHeight;
+    $("#main-chat").animate({ scrollTop: main_chat.scrollHeight - main_chat.clientHeight }, 300);
   }, 300);
-}
-
-function replace_emoji(text) {
-  text = ` ${text} `;
-
-  for (const key in emoji_replace_list) {
-    for (let i = 0; i < emoji_replace_list[key].length; i++) {
-      text = text.replace(" " + emoji_replace_list[key][i] + " ", " " + key + " ");
-    }
-  }
-
-  return text.trim();
 }

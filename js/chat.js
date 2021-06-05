@@ -4,10 +4,7 @@ let main_chat;
 let loading = false;
 
 function init_chat() {
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl);
-  });
+  init_tooltip();
 
   $(document).ready(function () {
     $("#my-input").emojioneArea({
@@ -45,8 +42,9 @@ function init_chat() {
         .on("child_added", (data) => {
           document.getElementById(snapshot.key).getElementsByClassName("recent-content")[0].innerText = data.val().type === "image" ? "Image" : data.val().content;
           if (!newItems[arrange_user_id(auth.currentUser.uid, snapshot.key)]) return;
-          render_message(data.val().sender, snapshot.key, data.val().content, data.val().type);
+          render_message(data.val(), snapshot.key);
           scroll_bottom();
+          init_tooltip();
         });
 
       database
@@ -74,11 +72,17 @@ function get_message() {
     if (!document.getElementsByClassName("emojionearea-picker")[0].classList.contains("hidden")) {
       document.getElementsByClassName("emojionearea-button-close")[0].click();
     }
-    database.ref("messages").child(arrange_user_id(auth.currentUser.uid, chatUser.id)).push({
-      sender: auth.currentUser.uid,
-      content: msg_content,
-      type: "text",
-    });
+    database
+      .ref("messages")
+      .child(arrange_user_id(auth.currentUser.uid, chatUser.id))
+      .push({
+        server_timestamp: {
+          ".sv": "timestamp",
+        },
+        sender: auth.currentUser.uid,
+        content: msg_content,
+        type: "text",
+      });
   }
 }
 
