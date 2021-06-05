@@ -95,11 +95,17 @@ function readImageFile(el, type) {
       if (file.size > 3145728) {
         alert("File is too big!!!");
       } else if (type.includes(file.type)) {
-        database.ref("messages").child(arrange_user_id(auth.currentUser.uid, chatUser.id)).push({
-          sender: auth.currentUser.uid,
-          content: reader.result,
-          type: "image",
-        });
+        database
+          .ref("messages")
+          .child(arrange_user_id(auth.currentUser.uid, chatUser.id))
+          .push({
+            server_timestamp: {
+              ".sv": "timestamp",
+            },
+            sender: auth.currentUser.uid,
+            content: reader.result,
+            type: "image",
+          });
       }
     },
     false

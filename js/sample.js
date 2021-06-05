@@ -12,10 +12,10 @@ sample.message = (content, side, timestamp) => {
   `;
 };
 
-sample.image = (imgURL, side) => {
+sample.image = (imgURL, side, timestamp) => {
   return `
   <div class="d-flex px-5 message-${side} mb-2">
-    <img class="zoom-in" src="${imgURL}">
+    <img class="zoom-in" src="${imgURL}" data-bs-toggle="tooltip" data-bs-placement="${side === "right" ? "left" : "right"}" title="${render_time(new Date(timestamp))}">
   </div>
   `;
 };

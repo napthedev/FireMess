@@ -85,6 +85,10 @@
   max-width: 60%;
 }
 
+#left-panel {
+  width: 300px;
+}
+
 #right-panel i {
   font-size: 20px;
   color: #0099ff;
@@ -97,5 +101,9 @@
 
   .message-right img{
     max-width: 100%;
+  }
+
+  #left-panel{
+    width: 90px;
   }
 }
