@@ -27,6 +27,8 @@ let emoji_replace_list = {
   "🤑": ["$-)"],
 };
 
+const new_message_sound = new Audio("./audio/sound.mp3");
+
 function replace_emoji(text) {
   text = ` ${text} `;
 
@@ -39,15 +41,22 @@ function replace_emoji(text) {
   return text.trim();
 }
 
-function init_tooltip() {
-  let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+function messages_tooltip() {
+  let tooltipTriggerList = [].slice.call(main_chat.querySelectorAll('[data-bs-toggle="tooltip"]'));
   tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl);
+    return new bootstrap.Tooltip(tooltipTriggerEl, {
+      delay: {
+        show: 700,
+        hide: 0,
+      },
+    });
   });
 }
 
 function set_chat_user(id) {
   if (chatUser?.id === id) return;
+  document.getElementById(id).classList.remove("has-new-message");
+
   main_chat.innerHTML = sample.loadingSpin();
   loading_message_count = 10;
 
@@ -89,7 +98,7 @@ function set_chat_user(id) {
               render_message(child_data[key], id);
             }
             scroll_bottom();
-            init_tooltip();
+            messages_tooltip();
           }
         });
     });
@@ -134,18 +143,23 @@ function render_message(child_data, chatUserId) {
   if (side != undefined) {
     if (type === "text") main_chat.innerHTML += sample.message(content, side, server_timestamp);
     else if (type === "image") main_chat.innerHTML += sample.image(content, side, server_timestamp);
+
+    if (!document.hasFocus()) new_message_sound.play();
+  } else {
+    document.getElementById(chatUserId).classList.add("has-new-message");
+    new_message_sound.play();
   }
 }
 
 function render_time(time) {
   let hours = time.getHours();
-  let am_pm = hours >= 12 ? "PM": "AM";
+  let am_pm = hours >= 12 ? "PM" : "AM";
   return `${format_time_unit(hours % 12)}:${format_time_unit(time.getMinutes())}:${format_time_unit(time.getSeconds())} ${am_pm} ${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()}`;
 }
 
 function format_time_unit(unit) {
   unit = String(unit);
-  if(unit.length < 2){
+  if (unit.length < 2) {
     return "0" + unit;
   }
   return unit;

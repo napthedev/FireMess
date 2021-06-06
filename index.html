@@ -48,7 +48,7 @@
             </div>
             <div class="row">
               <div class="col-md-7 d-md-block fade-left">
-                <img width="100%" src="https://i.imgur.com/qqQxJQR.png" alt="" />
+                <img width="100%" src="https://i.imgur.com/QiNDUjm.png" alt="" />
               </div>
               <div class="col-md-5 d-flex flex-column justify-content-around py-5 fade-right" style="height: 300px">
                 <h1 class="mb-4" style="font-size: 45x">The best way to chat with your friends</h1>
@@ -178,7 +178,7 @@
 
     <template id="chatScreen">
       <div class="d-flex vw-100">
-        <div class="border-end border-bottom vh-100 p-0 d-flex flex-column" id="left-panel" style="flex: 0 1 auto;">
+        <div class="border-end border-bottom vh-100 p-0 d-flex flex-column" id="left-panel" style="flex: 0 1 auto">
           <div style="flex: 0 1 auto">
             <div class="p-3">
               <div class="d-flex justify-content-between align-items-center">
@@ -211,27 +211,18 @@
             </div>
           </div>
 
-
           <div id="people" class="d-flex flex-column border-top special-scrollbar" style="overflow-x: hidden; overflow-y: auto; flex: 1 1 auto"></div>
-
-
         </div>
-
-
 
         <div class="vh-100 p-0 flex-column" style="flex: 1 1 auto" id="right-panel">
           <div style="flex: 0 1 70px; min-height: 70px" class="border-bottom d-flex align-items-center justify-content-between px-3">
-            <div id="chat-user-info">
-              
-            </div>
+            <div id="chat-user-info"></div>
             <span data-bs-toggle="offcanvas" data-bs-target="#chatUserInfo" aria-controls="chatUserInfo" title="Info">
               <i data-bs-toggle="tooltip" data-bs-placement="bottom" title="Info" class="fa fa-info-circle"></i>
             </span>
           </div>
 
-          <div id="main-chat" class="overflow-auto pt-3 special-scrollbar" style="flex: 1 1 auto">
-            
-          </div>
+          <div id="main-chat" class="overflow-auto pt-3 special-scrollbar" style="flex: 1 1 auto"></div>
 
           <div style="flex: 0 1 50px; min-height: 50px" class="d-flex justify-content-evenly align-items-center px-1" id="input-box">
             <label style="flex: 0 1 40px; cursor: pointer" for="image-browse" class="d-flex justify-content-center">
@@ -249,7 +240,7 @@
           </div>
         </div>
 
-        <div class="vh-100 p-0 flex-column" id="carouselWrapper" style="flex: 1 1 auto; display: grid; place-items: center;">
+        <div class="vh-100 p-0 flex-column" id="carouselWrapper" style="flex: 1 1 auto; display: grid; place-items: center">
           <h1 class="d-block d-lg-none text-center">Select an user to start chatting</h1>
           <div id="myCarousel" class="carousel carousel-dark slide h-100 w-100 d-none d-lg-block" data-bs-ride="carousel">
             <div class="carousel-indicators">
@@ -257,15 +248,15 @@
               <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
               <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
-            <div class="carousel-inner h-100" style="max-width: 100%;">
-              <div class="carousel-item active h-100" style="max-width: 100%;">
-                <img src="https://i.imgur.com/qqQxJQR.png"  width="auto" class="d-block mx-auto h-100" style="max-width: 100%;" alt="..." />
+            <div class="carousel-inner h-100" style="max-width: 100%">
+              <div class="carousel-item active h-100" style="max-width: 100%">
+                <img src="https://i.imgur.com/QiNDUjm.png" width="auto" class="d-block mx-auto h-100" style="max-width: 100%" alt="..." />
               </div>
-              <div class="carousel-item h-100" style="max-width: 100%;">
-                <img src="https://i.imgur.com/EqqHZiP.png" width="auto" class="d-block mx-auto h-100" style="max-width: 100%;" alt="..." />
+              <div class="carousel-item h-100" style="max-width: 100%">
+                <img src="https://i.imgur.com/EqqHZiP.png" width="auto" class="d-block mx-auto h-100" style="max-width: 100%" alt="..." />
               </div>
-              <div class="carousel-item h-100" style="max-width: 100%;">
-                <img src="https://i.imgur.com/zIBXuB3.png" width="auto" class="d-block mx-auto h-100" style="max-width: 100%;" alt="..." />
+              <div class="carousel-item h-100" style="max-width: 100%">
+                <img src="https://i.imgur.com/zIBXuB3.png" width="auto" class="d-block mx-auto h-100" style="max-width: 100%" alt="..." />
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
@@ -280,37 +271,29 @@
         </div>
       </div>
 
-
-      
       <div class="offcanvas offcanvas-start" tabindex="-1" id="currentUserInfo" aria-labelledby="User-profile-offcanvas">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="User-profile-offcanvas">Profile</h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
-          <img class="profile-picture">
-          <br>
-          <b>Email: </b><span id="profile-email"></span>
-          <br>
-          <b>Id: </b><span id="profile-id"></span>
+        <div class="offcanvas-body" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+          <img style="border-radius: 50%" class="profile-picture" />
+          <div><b>Email: </b><span style="cursor: auto;" id="profile-email"></span></div>
+          <div><b>Id: </b><span style="cursor: auto;" id="profile-id"></span></div>
         </div>
       </div>
-
 
       <div class="offcanvas offcanvas-end" tabindex="-1" id="chatUserInfo" aria-labelledby="chat-user-offcanvas">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="chat-user-offcanvas">Chat info</h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
-          <img id="chat-picture">
-          <br>
-          <b>Email: </b><span id="chat-email"></span>
-          <br>
-          <b>Id: </b><span id="chat-id"></span>
+        <div class="offcanvas-body" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+          <img style="border-radius: 50%" id="chat-picture" />
+          <div><b>Email: </b><span id="chat-email"></span></div>
+          <div><b>Id: </b><span id="chat-id"></span></div>
         </div>
       </div>
-
     </template>
 
     <div id="app"></div>

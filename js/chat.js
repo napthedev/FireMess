@@ -4,7 +4,10 @@ let main_chat;
 let loading = false;
 
 function init_chat() {
-  init_tooltip();
+  let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
 
   $(document).ready(function () {
     $("#my-input").emojioneArea({
@@ -44,7 +47,7 @@ function init_chat() {
           if (!newItems[arrange_user_id(auth.currentUser.uid, snapshot.key)]) return;
           render_message(data.val(), snapshot.key);
           scroll_bottom();
-          init_tooltip();
+          messages_tooltip();
         });
 
       database

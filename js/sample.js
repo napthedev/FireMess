@@ -4,7 +4,7 @@ sample.message = (content, side, timestamp) => {
   return `
   <div class="d-flex px-5 message-${side} m-0">
     <div class="msg-container zoom-in">
-      <p class="p-2 text-break message-content" data-bs-toggle="tooltip" data-bs-placement="${side === "right" ? "left" : "right"}" title="${render_time(new Date(timestamp))}">
+      <p class="p-2 text-break message-content" data-bs-toggle="tooltip" data-bs-delay='{"show": 500, "hide": 100}' data-bs-placement="${side === "right" ? "left" : "right"}" title="${render_time(new Date(timestamp))}">
         ${content}
       </p>
     </div>
@@ -24,7 +24,7 @@ sample.person = (id, photoURL, name, recent_content = "Chick here to start chatt
   return `
   <div class="p-3 border-bottom d-flex justify-content-between align-items-center person" onclick="set_chat_user('${id}')" id="${id}">
     <img src="${photoURL}" alt="" width="56px" height="56px" style="border-radius: 50%" class="me-md-3" />
-    <div class="d-md-flex d-none flex-column justify-content-center" style="min-width: 180px; flex-grow: 1;">
+    <div class="d-md-flex d-none flex-column justify-content-center text-truncate" style="min-width: 180px; flex-grow: 1;">
         <b>${name}</b>
         <p class="m-0 text-truncate recent-content" style="max-width: 200px;">${recent_content}</p>
     </div>
