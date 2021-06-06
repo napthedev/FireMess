@@ -121,4 +121,8 @@
   #left-panel{
     width: 90px;
   }
+
+  .has-new-message::before{
+    top: 15px;
+  }
 }

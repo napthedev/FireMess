@@ -130,9 +130,9 @@ function load_previous_messages() {
 function render_message(child_data, chatUserId) {
   let { sender, content, type, server_timestamp } = child_data;
   let side;
-  if (sender === chatUser.id) {
+  if (sender === chatUser?.id) {
     side = "left";
-  } else if (sender === auth.currentUser.uid && chatUser.id === chatUserId) {
+  } else if (sender === auth.currentUser.uid && chatUser?.id === chatUserId) {
     side = "right";
   }
 
