@@ -57,6 +57,8 @@ function init_chat() {
           newItems[arrange_user_id(auth.currentUser.uid, snapshot.key)] = true;
         });
     }
+
+    document.getElementsByClassName("person")[0].click();
   });
 
   main_chat.addEventListener("scroll", () => {

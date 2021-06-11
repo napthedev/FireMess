@@ -61,7 +61,6 @@ function set_chat_user(id) {
   loading_message_count = 10;
 
   document.getElementById("right-panel").style.display = "flex";
-  document.getElementById("carouselWrapper").style.display = "none";
 
   database
     .ref("users")
