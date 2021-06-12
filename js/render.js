@@ -27,8 +27,6 @@ let emoji_replace_list = {
   "🤑": ["$-)"],
 };
 
-const new_message_sound = new Audio("./audio/sound.mp3");
-
 function replace_emoji(text) {
   text = ` ${text} `;
 
@@ -104,6 +102,8 @@ function set_chat_user(id) {
 }
 
 function load_previous_messages() {
+  let previous_scroll = main_chat.scrollHeight;
+
   loading = true;
   loading_message_count += 10;
 
@@ -117,12 +117,11 @@ function load_previous_messages() {
       let child_data = child_snapshot.val();
       main_chat.innerHTML = "";
       for (const key in child_data) {
-        render_message(child_data, chatUser.id);
+        render_message(child_data[key], chatUser.id);
       }
       loading = false;
-      setTimeout(() => {
-        main_chat.scrollTop = 5;
-      }, 300);
+
+      main_chat.scrollTop = main_chat.scrollHeight - previous_scroll;
     });
 }
 
@@ -138,15 +137,11 @@ function render_message(child_data, chatUserId) {
   if (main_chat.innerHTML === sample.noMessageWarning()) {
     main_chat.innerHTML = "";
   }
-
   if (side != undefined) {
     if (type === "text") main_chat.innerHTML += sample.message(content, side, server_timestamp);
     else if (type === "image") main_chat.innerHTML += sample.image(content, side, server_timestamp);
-
-    if (!document.hasFocus()) new_message_sound.play();
   } else {
     document.getElementById(chatUserId).classList.add("has-new-message");
-    new_message_sound.play();
   }
 }
 
