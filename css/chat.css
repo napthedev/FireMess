@@ -19,6 +19,15 @@
   color: gray;
 }
 
+.message-left,
+.message-right {
+  display: flex;
+}
+
+.message-right {
+  flex-direction: row-reverse;
+}
+
 .message-left p {
   background-color: #ecebec;
   border-radius: 10px;
@@ -50,7 +59,7 @@
   max-width: 60%;
 }
 
-.message-right p {
+.message-right .message-content {
   color: white;
   background-color: #0099ff;
   border-radius: 10px;
@@ -59,7 +68,6 @@
 }
 
 .message-right .msg-container {
-  margin-left: auto;
   margin-right: 0;
   transform-origin: 100% 100%;
   position: relative;
@@ -79,7 +87,6 @@
 }
 
 .message-right img {
-  margin-left: auto;
   margin-right: 0;
   transform-origin: 100% 100%;
   max-width: 60%;
@@ -98,15 +105,59 @@
   position: relative;
 }
 
-.has-new-message::before{
+.has-new-message::before {
   content: "";
   position: absolute;
   border-radius: 50%;
   width: 10px;
   height: 10px;
-  background-color: #0099FF;
+  background-color: #0099ff;
   right: 15px;
   top: 28px;
+}
+
+.message-option-container {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin: 0 8px 1rem 8px;
+}
+
+.message-option-container i {
+  font-size: 18px !important;
+  cursor: pointer;
+  color: #b9bbbd !important;
+  transition: color 0.3s;
+}
+
+.message-option-container .fa-copy:hover {
+  color: #8a8d91 !important;
+}
+
+.message-option-container .fa-trash-alt:hover {
+  color: rgb(255, 67, 67) !important;
+}
+
+.message-left:hover .message-option-container {
+  display: flex;
+}
+
+.message-right:hover .message-option-container {
+  display: flex;
+}
+
+.removed .message-content {
+  color: #b1b1b1;
+  background: white;
+  border: 2px solid #ecebec;
+}
+
+.removed .msg-container::before {
+  content: none !important;
+}
+
+.removed:hover .message-option-container {
+  display: none !important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -114,15 +165,15 @@
     max-width: 100%;
   }
 
-  .message-right img{
+  .message-right img {
     max-width: 100%;
   }
 
-  #left-panel{
+  #left-panel {
     width: 90px;
   }
 
-  .has-new-message::before{
+  .has-new-message::before {
     top: 15px;
   }
 }

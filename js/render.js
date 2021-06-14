@@ -92,12 +92,22 @@ function set_chat_user(id) {
             let child_data = child_snapshot.val();
             main_chat.innerHTML = "";
             for (const key in child_data) {
-              render_message(child_data[key], id);
+              render_message(child_data[key], key, id);
             }
             scroll_bottom();
             messages_tooltip();
           }
         });
+    });
+
+  database
+    .ref("messages")
+    .child(arrange_user_id(auth.currentUser.uid, id))
+    .on("child_removed", (snapshot) => {
+      if (document.getElementById(snapshot.key)) {
+        document.getElementById(snapshot.key).getElementsByClassName("message-content")[0].innerHTML = "Message has been removed";
+        document.getElementById(snapshot.key).classList.add("removed");
+      }
     });
 }
 
@@ -117,7 +127,7 @@ function load_previous_messages() {
       let child_data = child_snapshot.val();
       main_chat.innerHTML = "";
       for (const key in child_data) {
-        render_message(child_data[key], chatUser.id);
+        render_message(child_data[key], key, chatUser.id);
       }
       loading = false;
 
@@ -125,7 +135,7 @@ function load_previous_messages() {
     });
 }
 
-function render_message(child_data, chatUserId) {
+function render_message(child_data, key, chatUserId) {
   let { sender, content, type, server_timestamp } = child_data;
   let side;
   if (sender === chatUser?.id) {
@@ -138,8 +148,8 @@ function render_message(child_data, chatUserId) {
     main_chat.innerHTML = "";
   }
   if (side != undefined) {
-    if (type === "text") main_chat.innerHTML += sample.message(content, side, server_timestamp);
-    else if (type === "image") main_chat.innerHTML += sample.image(content, side, server_timestamp);
+    if (type === "text") main_chat.innerHTML += sample.message(content, side, server_timestamp, key);
+    else if (type === "image") main_chat.innerHTML += sample.image(content, side, server_timestamp, key);
   } else {
     document.getElementById(chatUserId).classList.add("has-new-message");
   }

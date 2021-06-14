@@ -45,7 +45,7 @@ function init_chat() {
         .on("child_added", (data) => {
           document.getElementById(snapshot.key).getElementsByClassName("recent-content")[0].innerText = data.val().type === "image" ? "Image" : data.val().content;
           if (!newItems[arrange_user_id(auth.currentUser.uid, snapshot.key)]) return;
-          render_message(data.val(), snapshot.key);
+          render_message(data.val(), data.key, snapshot.key);
           scroll_bottom();
           messages_tooltip();
         });
@@ -58,7 +58,7 @@ function init_chat() {
         });
     }
 
-    document.getElementsByClassName("person")[0].click();
+    document.getElementsByClassName("person")[0]?.click();
   });
 
   main_chat.addEventListener("scroll", () => {
@@ -119,4 +119,40 @@ function readImageFile(el, type) {
   if (file) {
     reader.readAsDataURL(file);
   }
+}
+
+function remove_message(key) {
+  database.ref("messages").child(arrange_user_id(auth.currentUser.uid, chatUser.id)).child(key).remove();
+}
+
+function copy_to_clipboard(key) {
+  let text = document.getElementById(key).getElementsByClassName("message-content")[0].innerText;
+  if (!navigator.clipboard) {
+    let textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.display = "none";
+
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      let successful = document.execCommand("copy");
+      let msg = successful ? "successful" : "unsuccessful";
+      console.log("Copying text " + msg);
+    } catch (err) {
+      console.log(err);
+    }
+
+    document.body.removeChild(textArea);
+    return;
+  }
+  navigator.clipboard.writeText(text).then(
+    function () {
+      console.log("Async: Copying to clipboard was successful!");
+    },
+    function (err) {
+      console.error("Async: Could not copy text: ", err);
+    }
+  );
 }
