@@ -136,22 +136,24 @@ function load_previous_messages() {
 }
 
 function render_message(child_data, key, chatUserId) {
-  let { sender, content, type, server_timestamp } = child_data;
-  let side;
-  if (sender === chatUser?.id) {
-    side = "left";
-  } else if (sender === auth.currentUser.uid && chatUser?.id === chatUserId) {
-    side = "right";
-  }
+  if (!document.getElementById(key)) {
+    let { sender, content, type, server_timestamp } = child_data;
+    let side;
+    if (sender === chatUser?.id) {
+      side = "left";
+    } else if (sender === auth.currentUser.uid && chatUser?.id === chatUserId) {
+      side = "right";
+    }
 
-  if (main_chat.innerHTML === sample.noMessageWarning()) {
-    main_chat.innerHTML = "";
-  }
-  if (side != undefined) {
-    if (type === "text") main_chat.innerHTML += sample.message(content, side, server_timestamp, key);
-    else if (type === "image") main_chat.innerHTML += sample.image(content, side, server_timestamp, key);
-  } else {
-    document.getElementById(chatUserId).classList.add("has-new-message");
+    if (main_chat.innerHTML === sample.noMessageWarning()) {
+      main_chat.innerHTML = "";
+    }
+    if (side != undefined) {
+      if (type === "text") main_chat.innerHTML += sample.message(content, side, server_timestamp, key);
+      else if (type === "image") main_chat.innerHTML += sample.image(content, side, server_timestamp, key);
+    } else {
+      document.getElementById(chatUserId).classList.add("has-new-message");
+    }
   }
 }
 
