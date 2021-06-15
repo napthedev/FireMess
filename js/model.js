@@ -40,9 +40,14 @@ model.signIn = (data) => {
 };
 
 model.signOut = () => {
-  auth.signOut().catch((err) => {
-    console.log(err);
-  });
+  auth
+    .signOut()
+    .then(() => {
+      location.reload();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 model.signInWithGoogle = () => {

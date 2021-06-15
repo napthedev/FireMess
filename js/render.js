@@ -59,7 +59,6 @@ function set_chat_user(id) {
   loading_message_count = 10;
 
   document.getElementById("right-panel").style.display = "flex";
-
   database
     .ref("users")
     .child(id)
@@ -105,13 +104,14 @@ function set_chat_user(id) {
     .child(arrange_user_id(auth.currentUser.uid, id))
     .on("child_removed", (snapshot) => {
       if (document.getElementById(snapshot.key)) {
-        document.getElementById(snapshot.key).getElementsByClassName("message-content")[0].innerHTML = "Message has been removed";
-        document.getElementById(snapshot.key).classList.add("removed");
+        document.getElementsByClassName("tooltip")[0]?.remove();
+        document.getElementById(snapshot.key).innerHTML = sample.removedMessage();
       }
     });
 }
 
 function load_previous_messages() {
+  database.ref("messages").child(arrange_user_id(auth.currentUser.uid, chatUser.id)).off("child_removed");
   let previous_scroll = main_chat.scrollHeight;
 
   loading = true;
@@ -132,6 +132,15 @@ function load_previous_messages() {
       loading = false;
 
       main_chat.scrollTop = main_chat.scrollHeight - previous_scroll;
+
+      database
+        .ref("messages")
+        .child(arrange_user_id(auth.currentUser.uid, chatUser.id))
+        .on("child_removed", (snapshot) => {
+          if (document.getElementById(snapshot.key)) {
+            document.getElementById(snapshot.key).innerHTML = sample.removedMessage();
+          }
+        });
     });
 }
 

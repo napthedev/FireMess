@@ -2,6 +2,7 @@ let chatUser;
 let newItems = {};
 let main_chat;
 let loading = false;
+let firstClick = false;
 
 function init_chat() {
   let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -58,7 +59,10 @@ function init_chat() {
         });
     }
 
-    document.getElementsByClassName("person")[0]?.click();
+    if (!firstClick) {
+      document.getElementsByClassName("person")[0].click();
+      firstClick = true;
+    }
   });
 
   main_chat.addEventListener("scroll", () => {

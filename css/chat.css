@@ -152,12 +152,8 @@
   border: 2px solid #ecebec;
 }
 
-.removed .msg-container::before {
+.removed::before {
   content: none !important;
-}
-
-.removed:hover .message-option-container {
-  display: none !important;
 }
 
 @media only screen and (max-width: 768px) {
