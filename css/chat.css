@@ -57,6 +57,7 @@
   margin-left: 0;
   transform-origin: 0 100%;
   max-width: 60%;
+  height: auto;
 }
 
 .message-right .message-content {
@@ -90,6 +91,7 @@
   margin-right: 0;
   transform-origin: 100% 100%;
   max-width: 60%;
+  height: auto;
 }
 
 #left-panel {

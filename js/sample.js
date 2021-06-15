@@ -2,7 +2,7 @@ const sample = {};
 
 sample.message = (content, side, timestamp, key) => {
   return `
-  <div class="px-5 message-${side} m-0" id='${key}'>
+  <div class="px-md-5 px-3 message-${side} m-0" id='${key}'>
     <div class="msg-container zoom-in">
       <p class="p-2 text-break message-content" data-bs-toggle="tooltip" data-bs-placement="${side === "right" ? "left" : "right"}" title="${render_time(new Date(timestamp))}">
         ${content}
@@ -18,7 +18,7 @@ sample.message = (content, side, timestamp, key) => {
 
 sample.image = (imgURL, side, timestamp, key) => {
   return `
-  <div class="px-5 message-${side} mb-2" id='${key}'>
+  <div class="px-md-5 px-3 message-${side} mb-2" id='${key}'>
     <img class="zoom-in" src="${imgURL}" data-bs-toggle="tooltip" data-bs-placement="${side === "right" ? "left" : "right"}" title="${render_time(new Date(timestamp))}">
     <div class="message-option-container">
       ${side === "right" ? `<i data-bs-toggle="tooltip" data-bs-placement="top" title="Unsent" onclick="remove_message('${key}')" class="far fa-trash-alt"></i>` : ""}
