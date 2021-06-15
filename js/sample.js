@@ -22,7 +22,8 @@ sample.image = (imgURL, side, timestamp, key) => {
     <img class="zoom-in" src="${imgURL}" data-bs-toggle="tooltip" data-bs-placement="${side === "right" ? "left" : "right"}" title="${render_time(new Date(timestamp))}">
     <div class="message-option-container">
       ${side === "right" ? `<i data-bs-toggle="tooltip" data-bs-placement="top" title="Unsent" onclick="remove_message('${key}')" class="far fa-trash-alt"></i>` : ""}
-    </div>
+      <i data-bs-toggle="tooltip" data-bs-placement="top" title="Copy" onclick="copy_to_clipboard('${key}')" class="far fa-copy"></i>
+      </div>
   </div>
   `;
 };

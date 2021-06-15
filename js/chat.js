@@ -129,34 +129,27 @@ function remove_message(key) {
   database.ref("messages").child(arrange_user_id(auth.currentUser.uid, chatUser.id)).child(key).remove();
 }
 
-function copy_to_clipboard(key) {
-  let text = document.getElementById(key).getElementsByClassName("message-content")[0].innerText;
-  if (!navigator.clipboard) {
-    let textArea = document.createElement("textarea");
-    textArea.value = text;
-    textArea.style.display = "none";
+async function copy_to_clipboard(key) {
+  if (document.getElementById(key).getElementsByClassName("message-content")[0]) {
+    let text = document.getElementById(key).getElementsByClassName("message-content")[0].innerText;
+    await navigator.clipboard.writeText(text);
+  } else {
+    const src = document.getElementById(key).getElementsByTagName("img")[0].src;
+    let myImage = document.createElement("img");
+    myImage.src = src;
+    let myCanvas = document.createElement("canvas");
+    myCanvas.width = myImage.width;
+    myCanvas.height = myImage.height;
+    let ctx = myCanvas.getContext("2d");
+    ctx.drawImage(myImage, 0, 0);
 
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-
-    try {
-      let successful = document.execCommand("copy");
-      let msg = successful ? "successful" : "unsuccessful";
-      console.log("Copying text " + msg);
-    } catch (err) {
-      console.log(err);
-    }
-
-    document.body.removeChild(textArea);
-    return;
+    const newSrc = await myCanvas.toDataURL();
+    const res = await fetch(newSrc);
+    const blob = await res.blob();
+    navigator.clipboard.write([
+      new ClipboardItem({
+        "image/png": blob,
+      }),
+    ]);
   }
-  navigator.clipboard.writeText(text).then(
-    () => {
-      console.log("Copying text to clipboard successful!");
-    },
-    (err) => {
-      console.error(" Could not copy text: ", err);
-    }
-  );
 }
