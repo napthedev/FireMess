@@ -1,13 +1,22 @@
 const model = {};
+const avatar_placeholder_color = [
+  { background: "0D8ABC", color: "FFFFFF" },
+  { background: "B8E986", color: "4A7D0E" },
+  { background: "CEF2EF", color: "259A8F" },
+  { background: "F8F8F8", color: "29353A" },
+  { background: "263238", color: "ADB2B4" },
+];
 
 model.register = (data) => {
   auth
     .createUserWithEmailAndPassword(data.email, data.password)
     .then((user) => {
+      let random_avatar_color = array[Math.floor(Math.random() * array.length)];
+
       auth.currentUser.updateProfile({
         displayName: data.firstName + " " + data.lastName,
         email: data.email,
-        photoURL: `https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=${data.firstName} + ${data.lastName}`,
+        photoURL: `https://ui-avatars.com/api/?background=${random_avatar_color.background}&color=${random_avatar_color.color}&name=${data.firstName}+${data.lastName}`,
       });
 
       auth.currentUser.sendEmailVerification();
