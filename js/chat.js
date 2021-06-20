@@ -33,10 +33,12 @@ function init_chat() {
   }
   document.getElementById("profile-email").innerText = auth.currentUser.email;
   document.getElementById("profile-id").innerText = auth.currentUser.uid;
+  document.getElementById("profile-name").innerText = auth.currentUser.displayName;
 
   database.ref("users").on("child_added", (snapshot) => {
     let user = snapshot.val();
     if (snapshot.key != auth.currentUser.uid) {
+      if (document.getElementById("people").innerHTML === sample.noUserToChat()) document.getElementById("people").innerHTML = "";
       document.getElementById("people").innerHTML += sample.person(snapshot.key, user.photoURL, user.displayName);
 
       database
@@ -60,8 +62,12 @@ function init_chat() {
     }
 
     if (!firstClick) {
-      document.getElementsByClassName("person")[0].click();
-      firstClick = true;
+      if (document.getElementsByClassName("person")[0]) {
+        document.getElementsByClassName("person")[0].click();
+        firstClick = true;
+      } else {
+        document.getElementById("people").innerHTML = sample.noUserToChat();
+      }
     }
   });
 

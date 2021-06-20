@@ -76,8 +76,8 @@ function set_chat_user(id) {
       document.getElementById(id).classList.add("person-focus");
 
       document.getElementById("chat-picture").src = chatUser.photoURL;
+      document.getElementById("chat-name").innerText = chatUser.displayName;
       document.getElementById("chat-email").innerText = chatUser.email;
-      document.getElementById("chat-id").innerText = chatUser.id;
 
       database
         .ref("messages")

@@ -63,6 +63,12 @@ sample.noMessageWarning = () => {
   `;
 };
 
+sample.noUserToChat = () => {
+  return `
+    <p class="text-center">No user to chat, let's invite some friends</p>
+  `;
+};
+
 sample.loadingSpin = () => {
   return `
   <div class="d-flex justify-content-center">
