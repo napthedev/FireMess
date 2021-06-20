@@ -158,6 +158,10 @@
   content: none !important;
 }
 
+.offcanvas span {
+  cursor: auto;
+}
+
 @media only screen and (max-width: 768px) {
   .message-left img {
     max-width: 100%;
