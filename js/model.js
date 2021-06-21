@@ -52,7 +52,9 @@ model.signOut = () => {
   auth
     .signOut()
     .then(() => {
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     })
     .catch((err) => {
       console.log(err);
