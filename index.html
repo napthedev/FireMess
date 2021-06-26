@@ -387,35 +387,25 @@
     <template id="chatScreen">
       <div class="d-flex vw-100">
         <div class="border-end border-bottom vh-100 p-0 d-flex flex-column" id="left-panel" style="flex: 0 1 auto">
-          <div style="flex: 0 1 auto">
-            <div class="p-3">
-              <div class="d-flex justify-content-between align-items-center">
-                <a class="navbar-brand d-md-block d-none" href="#">
-                  <img src="https://i.imgur.com/WZqIKV4.png" width="auto" height="35px" alt="" />
-                </a>
-
-                <div class="dropdown">
-                  <a class="dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="profile-picture" width="36px" height="36px" style="border-radius: 50px" alt="" />
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                    <li>
-                      <span class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#currentUserInfo" aria-controls="currentUserInfo"><i class="fa fa-info-circle"></i> Profile</span>
-                    </li>
-                    <li>
-                      <span onclick="model.signOut();" class="dropdown-item"><i class="fa fa-sign-out-alt"></i> Log out</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-1 position-relative px-3 d-md-block d-none">
-              <a href="" class="position-absolute" style="top: 10px; left: 25px">
-                <i style="font-size: 20px" id="search-icon" class="fa fa-search"></i>
+          <div class="p-3" style="flex: 0 1 80px">
+            <div class="d-flex justify-content-between align-items-center">
+              <a class="navbar-brand d-md-block d-none" href="#">
+                <img src="https://i.imgur.com/WZqIKV4.png" width="auto" height="35px" alt="" />
               </a>
 
-              <input type="text" class="form-control form-control-sm mb-3" style="padding-left: 35px" placeholder="Search" />
+              <div class="dropdown">
+                <a class="dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img class="profile-picture" width="36px" height="36px" style="border-radius: 50px" alt="" />
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                  <li>
+                    <span class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#currentUserInfo" aria-controls="currentUserInfo"><i class="fa fa-info-circle"></i> Profile</span>
+                  </li>
+                  <li>
+                    <span onclick="model.signOut();" class="dropdown-item"><i class="fa fa-sign-out-alt"></i> Log out</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
@@ -423,7 +413,7 @@
         </div>
 
         <div class="vh-100 p-0 flex-column" style="flex: 1 1 auto" id="right-panel">
-          <div style="flex: 0 1 70px; min-height: 70px" class="border-bottom d-flex align-items-center justify-content-between px-3">
+          <div style="flex: 0 1 80px; min-height: 80px" class="border-bottom d-flex align-items-center justify-content-between px-3">
             <div id="chat-user-info"></div>
             <span data-bs-toggle="offcanvas" data-bs-target="#chatUserInfo" aria-controls="chatUserInfo" title="Info">
               <i data-bs-toggle="tooltip" data-bs-placement="bottom" title="Info" class="fa fa-info-circle"></i>

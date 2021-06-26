@@ -58,7 +58,10 @@ function set_chat_user(id) {
   main_chat.innerHTML = sample.loadingSpin();
   loading_message_count = 10;
 
+  loading = false;
+
   document.getElementById("right-panel").style.display = "flex";
+
   database
     .ref("users")
     .child(id)
@@ -129,7 +132,10 @@ function load_previous_messages() {
       for (const key in child_data) {
         render_message(child_data[key], key, chatUser.id);
       }
-      loading = false;
+
+      if (loading_message_count < child_snapshot.numChildren()) {
+        loading = false;
+      }
 
       main_chat.scrollTop = main_chat.scrollHeight - previous_scroll;
 
