@@ -173,17 +173,17 @@ function render_message(child_data, key, chatUserId) {
 }
 
 function render_time(time) {
-  let hours = time.getHours();
-  let am_pm = hours >= 12 ? "PM" : "AM";
-  return `${format_time_unit(hours % 12)}:${format_time_unit(time.getMinutes())}:${format_time_unit(time.getSeconds())} ${am_pm} ${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()}`;
-}
+  let date = new Date(time);
+  let options = {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  };
 
-function format_time_unit(unit) {
-  unit = String(unit);
-  if (unit.length < 2) {
-    return "0" + unit;
-  }
-  return unit;
+  return date.toLocaleTimeString("en-us", options);
 }
 
 function arrange_user_id(id1, id2) {
