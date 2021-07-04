@@ -132,6 +132,8 @@ function load_previous_messages() {
       for (const key in child_data) {
         render_message(child_data[key], key, chatUser.id);
       }
+    
+      messages_tooltip();
 
       if (loading_message_count < child_snapshot.numChildren()) {
         loading = false;
