@@ -140,6 +140,10 @@
   color: rgb(255, 67, 67) !important;
 }
 
+.message-left:hover img {
+  margin-right: 8px;
+}
+
 .message-left:hover .message-option-container {
   display: flex;
 }
@@ -164,11 +168,11 @@
 
 @media only screen and (max-width: 768px) {
   .message-left img {
-    max-width: 100%;
+    max-width: 90%;
   }
 
   .message-right img {
-    max-width: 100%;
+    max-width: 90%;
   }
 
   #left-panel {

@@ -23,7 +23,7 @@ sample.image = (imgURL, side, timestamp, key) => {
     <div class="message-option-container">
       ${side === "right" ? `<i data-bs-toggle="tooltip" data-bs-placement="top" title="Unsent" onclick="remove_message('${key}')" class="far fa-trash-alt"></i>` : ""}
       <i data-bs-toggle="tooltip" data-bs-placement="top" title="Copy" onclick="copy_to_clipboard('${key}')" class="far fa-copy"></i>
-      </div>
+    </div>
   </div>
   `;
 };
