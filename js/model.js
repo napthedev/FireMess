@@ -11,7 +11,7 @@ model.register = (data) => {
   auth
     .createUserWithEmailAndPassword(data.email, data.password)
     .then((user) => {
-      let random_avatar_color = array[Math.floor(Math.random() * array.length)];
+      let random_avatar_color = avatar_placeholder_color[Math.floor(Math.random() * avatar_placeholder_color.length)];
 
       auth.currentUser.updateProfile({
         displayName: data.firstName + " " + data.lastName,
