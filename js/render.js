@@ -32,7 +32,7 @@ function replace_emoji(text) {
 
   for (const key in emoji_replace_list) {
     for (let i = 0; i < emoji_replace_list[key].length; i++) {
-      text = text.replace(" " + emoji_replace_list[key][i] + " ", " " + key + " ");
+      text = text.replaceAll(" " + emoji_replace_list[key][i] + " ", " " + key + " ");
     }
   }
 
