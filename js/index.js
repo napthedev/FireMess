@@ -2,12 +2,12 @@ let auth, database;
 
 const init = function () {
   var firebaseConfig = {
-    apiKey: "AIzaSyC0YRgwb33eKMgCH4uE1ChOt9NjzNcpn24",
-    authDomain: "firemess-2ccd2.firebaseapp.com",
-    projectId: "firemess-2ccd2",
-    storageBucket: "firemess-2ccd2.appspot.com",
-    messagingSenderId: "198328051551",
-    appId: "1:198328051551:web:d39551bf699163a115b8ea",
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
   };
   firebase.initializeApp(firebaseConfig);
   auth = firebase.auth();
