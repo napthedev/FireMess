@@ -5,7 +5,9 @@ let loading = false;
 let firstClick = false;
 
 function init_chat() {
-  let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  let tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
   tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl);
   });
@@ -29,25 +31,39 @@ function init_chat() {
 
   let profile_picture_el = document.getElementsByClassName("profile-picture");
   for (let i = 0; i < profile_picture_el.length; i++) {
-    profile_picture_el[i].src = auth.currentUser.photoURL;
+    profile_picture_el[
+      i
+    ].src = `https://images.weserv.nl/?url=${encodeURIComponent(
+      auth.currentUser.photoURL
+    )}`;
   }
   document.getElementById("profile-email").innerText = auth.currentUser.email;
   document.getElementById("profile-id").innerText = auth.currentUser.uid;
-  document.getElementById("profile-name").innerText = auth.currentUser.displayName;
+  document.getElementById("profile-name").innerText =
+    auth.currentUser.displayName;
 
   database.ref("users").on("child_added", (snapshot) => {
     let user = snapshot.val();
     if (snapshot.key != auth.currentUser.uid) {
-      if (document.getElementById("people").innerHTML === sample.noUserToChat()) document.getElementById("people").innerHTML = "";
-      document.getElementById("people").innerHTML += sample.person(snapshot.key, user.photoURL, user.displayName);
+      if (document.getElementById("people").innerHTML === sample.noUserToChat())
+        document.getElementById("people").innerHTML = "";
+      document.getElementById("people").innerHTML += sample.person(
+        snapshot.key,
+        user.photoURL,
+        user.displayName
+      );
 
       database
         .ref("messages")
         .child(arrange_user_id(auth.currentUser.uid, snapshot.key))
         .limitToLast(1)
         .on("child_added", (data) => {
-          document.getElementById(snapshot.key).getElementsByClassName("recent-content")[0].innerText = data.val().type === "image" ? "Image" : data.val().content;
-          if (!newItems[arrange_user_id(auth.currentUser.uid, snapshot.key)]) return;
+          document
+            .getElementById(snapshot.key)
+            .getElementsByClassName("recent-content")[0].innerText =
+            data.val().type === "image" ? "Image" : data.val().content;
+          if (!newItems[arrange_user_id(auth.currentUser.uid, snapshot.key)])
+            return;
           render_message(data.val(), data.key, snapshot.key);
           scroll_bottom();
           messages_tooltip();
@@ -72,7 +88,11 @@ function init_chat() {
   });
 
   main_chat.addEventListener("scroll", () => {
-    if (main_chat.scrollTop === 0 && main_chat.scrollHeight > main_chat.clientHeight && !loading) {
+    if (
+      main_chat.scrollTop === 0 &&
+      main_chat.scrollHeight > main_chat.clientHeight &&
+      !loading
+    ) {
       load_previous_messages();
     }
   });
@@ -84,7 +104,11 @@ function get_message() {
   if (msg_content != "") {
     msg_content = replace_emoji(msg_content);
     my_input[0].emojioneArea.setText("");
-    if (!document.getElementsByClassName("emojionearea-picker")[0].classList.contains("hidden")) {
+    if (
+      !document
+        .getElementsByClassName("emojionearea-picker")[0]
+        .classList.contains("hidden")
+    ) {
       document.getElementsByClassName("emojionearea-button-close")[0].click();
     }
     database
@@ -132,12 +156,20 @@ function readImageFile(el, type) {
 }
 
 function remove_message(key) {
-  database.ref("messages").child(arrange_user_id(auth.currentUser.uid, chatUser.id)).child(key).remove();
+  database
+    .ref("messages")
+    .child(arrange_user_id(auth.currentUser.uid, chatUser.id))
+    .child(key)
+    .remove();
 }
 
 async function copy_to_clipboard(key) {
-  if (document.getElementById(key).getElementsByClassName("message-content")[0]) {
-    let text = document.getElementById(key).getElementsByClassName("message-content")[0].innerText;
+  if (
+    document.getElementById(key).getElementsByClassName("message-content")[0]
+  ) {
+    let text = document
+      .getElementById(key)
+      .getElementsByClassName("message-content")[0].innerText;
     await navigator.clipboard.writeText(text);
   } else {
     const src = document.getElementById(key).getElementsByTagName("img")[0].src;

@@ -4,12 +4,18 @@ sample.message = (content, side, timestamp, key) => {
   return `
   <div class="px-md-5 px-4 message-${side} m-0" id='${key}'>
     <div class="msg-container zoom-in">
-      <p class="p-2 text-break message-content" data-bs-toggle="tooltip" data-bs-placement="${side === "right" ? "left" : "right"}" title="${render_time(timestamp)}">
+      <p class="p-2 text-break message-content" data-bs-toggle="tooltip" data-bs-placement="${
+        side === "right" ? "left" : "right"
+      }" title="${render_time(timestamp)}">
         ${content}
       </p>
     </div>
     <div class="message-option-container">
-      ${side === "right" ? `<i data-bs-toggle="tooltip" data-bs-placement="top" title="Unsent" onclick="remove_message('${key}')" class="far fa-trash-alt"></i>` : ""}
+      ${
+        side === "right"
+          ? `<i data-bs-toggle="tooltip" data-bs-placement="top" title="Unsent" onclick="remove_message('${key}')" class="far fa-trash-alt"></i>`
+          : ""
+      }
       <i data-bs-toggle="tooltip" data-bs-placement="top" title="Copy" onclick="copy_to_clipboard('${key}')" class="far fa-copy"></i>
     </div>
   </div>
@@ -19,9 +25,15 @@ sample.message = (content, side, timestamp, key) => {
 sample.image = (imgURL, side, timestamp, key) => {
   return `
   <div class="px-md-5 px-4 message-${side} mb-2" id='${key}'>
-    <img class="zoom-in" src="${imgURL}" data-bs-toggle="tooltip" data-bs-placement="${side === "right" ? "left" : "right"}" title="${render_time(timestamp)}">
+    <img class="zoom-in" src="${imgURL}" data-bs-toggle="tooltip" data-bs-placement="${
+    side === "right" ? "left" : "right"
+  }" title="${render_time(timestamp)}">
     <div class="message-option-container">
-      ${side === "right" ? `<i data-bs-toggle="tooltip" data-bs-placement="top" title="Unsent" onclick="remove_message('${key}')" class="far fa-trash-alt"></i>` : ""}
+      ${
+        side === "right"
+          ? `<i data-bs-toggle="tooltip" data-bs-placement="top" title="Unsent" onclick="remove_message('${key}')" class="far fa-trash-alt"></i>`
+          : ""
+      }
       <i data-bs-toggle="tooltip" data-bs-placement="top" title="Copy" onclick="copy_to_clipboard('${key}')" class="far fa-copy"></i>
     </div>
   </div>
@@ -38,10 +50,17 @@ sample.removedMessage = () => {
 `;
 };
 
-sample.person = (id, photoURL, name, recent_content = "Chick here to start chatting") => {
+sample.person = (
+  id,
+  photoURL,
+  name,
+  recent_content = "Chick here to start chatting"
+) => {
   return `
   <div class="p-3 border-bottom d-flex justify-content-between align-items-center person" onclick="set_chat_user('${id}')" id="${id}">
-    <img src="${photoURL}" alt="" width="56px" height="56px" style="border-radius: 50%" class="me-md-3" />
+    <img src="https://images.weserv.nl/?url=${encodeURIComponent(
+      photoURL
+    )}" alt="" width="56px" height="56px" style="border-radius: 50%" class="me-md-3" />
     <div class="d-md-flex d-none flex-column justify-content-center text-truncate" style="min-width: 180px; flex-grow: 1;">
         <b>${name}</b>
         <p class="m-0 text-truncate recent-content" style="max-width: 200px;">${recent_content}</p>
@@ -52,7 +71,9 @@ sample.person = (id, photoURL, name, recent_content = "Chick here to start chatt
 
 sample.chatUser = (photoURL, name) => {
   return `
-  <img src="${photoURL}" alt="" width="40px" height="40px" style="border-radius: 50px" />
+  <img src="https://images.weserv.nl/?url=${encodeURIComponent(
+    photoURL
+  )}" alt="" width="40px" height="40px" style="border-radius: 50px" />
   <b class="ms-2">${name}</b>
   `;
 };

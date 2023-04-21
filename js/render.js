@@ -32,7 +32,10 @@ function replace_emoji(text) {
 
   for (const key in emoji_replace_list) {
     for (let i = 0; i < emoji_replace_list[key].length; i++) {
-      text = text.replaceAll(" " + emoji_replace_list[key][i] + " ", " " + key + " ");
+      text = text.replaceAll(
+        " " + emoji_replace_list[key][i] + " ",
+        " " + key + " "
+      );
     }
   }
 
@@ -40,7 +43,9 @@ function replace_emoji(text) {
 }
 
 function messages_tooltip() {
-  let tooltipTriggerList = [].slice.call(main_chat.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  let tooltipTriggerList = [].slice.call(
+    main_chat.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
   tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl, {
       delay: {
@@ -68,17 +73,28 @@ function set_chat_user(id) {
     .get()
     .then((snapshot) => {
       chatUser = { ...snapshot.val(), id: id };
-      document.getElementById("chat-user-info").innerHTML = sample.chatUser(chatUser.photoURL, chatUser.displayName);
-      let input_box = document.getElementById("input-box").getElementsByTagName("input");
+      document.getElementById("chat-user-info").innerHTML = sample.chatUser(
+        chatUser.photoURL,
+        chatUser.displayName
+      );
+      let input_box = document
+        .getElementById("input-box")
+        .getElementsByTagName("input");
       for (let i = 0; i < input_box.length; i++) {
         if (input_box[i].id != "my-input") input_box[i].disabled = false;
       }
       document.getElementById("my-input").emojioneArea.enable();
 
-      document.getElementsByClassName("person-focus")[0]?.classList.remove("person-focus");
+      document
+        .getElementsByClassName("person-focus")[0]
+        ?.classList.remove("person-focus");
       document.getElementById(id).classList.add("person-focus");
 
-      document.getElementById("chat-picture").src = chatUser.photoURL;
+      document.getElementById(
+        "chat-picture"
+      ).src = `https://images.weserv.nl/?url=${encodeURIComponent(
+        chatUser.photoURL
+      )}`;
       document.getElementById("chat-name").innerText = chatUser.displayName;
       document.getElementById("chat-email").innerText = chatUser.email;
 
@@ -108,13 +124,17 @@ function set_chat_user(id) {
     .on("child_removed", (snapshot) => {
       if (document.getElementById(snapshot.key)) {
         document.getElementsByClassName("tooltip")[0]?.remove();
-        document.getElementById(snapshot.key).innerHTML = sample.removedMessage();
+        document.getElementById(snapshot.key).innerHTML =
+          sample.removedMessage();
       }
     });
 }
 
 function load_previous_messages() {
-  database.ref("messages").child(arrange_user_id(auth.currentUser.uid, chatUser.id)).off("child_removed");
+  database
+    .ref("messages")
+    .child(arrange_user_id(auth.currentUser.uid, chatUser.id))
+    .off("child_removed");
   let previous_scroll = main_chat.scrollHeight;
 
   loading = true;
@@ -132,7 +152,7 @@ function load_previous_messages() {
       for (const key in child_data) {
         render_message(child_data[key], key, chatUser.id);
       }
-    
+
       messages_tooltip();
 
       if (loading_message_count < child_snapshot.numChildren()) {
@@ -146,7 +166,8 @@ function load_previous_messages() {
         .child(arrange_user_id(auth.currentUser.uid, chatUser.id))
         .on("child_removed", (snapshot) => {
           if (document.getElementById(snapshot.key)) {
-            document.getElementById(snapshot.key).innerHTML = sample.removedMessage();
+            document.getElementById(snapshot.key).innerHTML =
+              sample.removedMessage();
           }
         });
     });
@@ -166,8 +187,20 @@ function render_message(child_data, key, chatUserId) {
       main_chat.innerHTML = "";
     }
     if (side != undefined) {
-      if (type === "text") main_chat.innerHTML += sample.message(content, side, server_timestamp, key);
-      else if (type === "image") main_chat.innerHTML += sample.image(content, side, server_timestamp, key);
+      if (type === "text")
+        main_chat.innerHTML += sample.message(
+          content,
+          side,
+          server_timestamp,
+          key
+        );
+      else if (type === "image")
+        main_chat.innerHTML += sample.image(
+          content,
+          side,
+          server_timestamp,
+          key
+        );
     } else {
       document.getElementById(chatUserId).classList.add("has-new-message");
     }
@@ -194,6 +227,9 @@ function arrange_user_id(id1, id2) {
 
 function scroll_bottom() {
   setTimeout(() => {
-    $("#main-chat").animate({ scrollTop: main_chat.scrollHeight - main_chat.clientHeight }, 300);
+    $("#main-chat").animate(
+      { scrollTop: main_chat.scrollHeight - main_chat.clientHeight },
+      300
+    );
   }, 300);
 }

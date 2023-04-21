@@ -1,20 +1,24 @@
 let auth, database;
 
 const init = function () {
-  var firebaseConfig = {
+  const firebaseConfig = {
     apiKey: "",
     authDomain: "",
     projectId: "",
     storageBucket: "",
     messagingSenderId: "",
     appId: "",
+    databaseURL: "",
   };
   firebase.initializeApp(firebaseConfig);
   auth = firebase.auth();
   database = firebase.database();
 
   auth.onAuthStateChanged(function (user) {
-    if ((user && user.emailVerified) || (user && user.providerData[0].providerId === "facebook.com")) {
+    if (
+      (user && user.emailVerified) ||
+      (user && user.providerData[0].providerId === "facebook.com")
+    ) {
       database
         .ref("users")
         .child(auth.currentUser.uid)
@@ -31,7 +35,10 @@ const init = function () {
       view.setActiveScreen("chatScreen");
     } else if (user && !user.emailVerified) {
       document.getElementById("openEmailModal").click();
-    } else if (view.current != "signInScreen" && view.current != "registerScreen") {
+    } else if (
+      view.current != "signInScreen" &&
+      view.current != "registerScreen"
+    ) {
       view.setActiveScreen("welcomeScreen");
     }
   });
@@ -45,9 +52,11 @@ document.addEventListener("animationend", function (event) {
   }
 });
 
-document.getElementById("emailVerificationModal").addEventListener("hidden.bs.modal", function () {
-  auth.signOut();
-  view.setActiveScreen("signInScreen");
-});
+document
+  .getElementById("emailVerificationModal")
+  .addEventListener("hidden.bs.modal", function () {
+    auth.signOut();
+    view.setActiveScreen("signInScreen");
+  });
 
 window.onload = init;
